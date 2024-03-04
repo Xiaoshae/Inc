@@ -4,8 +4,8 @@
 namespace incName {
 
 	inc::inc(u8 newName, null newFet,
-		bool (*newCreateFet)(null nowFet),
-		null(*newEndingFet)(null nowFet)) {
+		null (*newCreateFet)(null nowFet),
+		bool (*newEndingFet)(null nowFet)) {
 
 		inc& object = *this;
 
@@ -31,7 +31,7 @@ namespace incName {
 	bool inc::setName(u8 newName) {
 		inc& object = *this;
 
-		bool StatucCode = false;
+		bool StatusCode = false;
 
 		//结构存在
 		if (object.base != NULL) {
@@ -39,10 +39,10 @@ namespace incName {
 			multeSpec& specific = *object.base;
 			specific.Name = newName;
 
-			StatucCode = true;
+			StatusCode = true;
 		}
 
-		return StatucCode;
+		return StatusCode;
 	}
 
 	u8 inc::getName(void) {
@@ -64,62 +64,34 @@ namespace incName {
 		
 	bool inc::setFet(null newFet, ace(*nowEngdingFet)(null Fet)) {
 
-		/*
 		inc& object = *this;
 
-		bool StatucCode = false;
+		bool StatusCode = false;
 
-		//开启了自动释放，但是自动释放的地址未提供
-		if (object.autoFet == true && (object.endingFet == NULL || nowEngdingFet == NULL)) {
-			object.abnCode = 1;
-		}
-
-		if(object.abnCode == false){ //无异常
+		if (object.createFet != NULL && object.endingFet != NULL) {
 
 			multeSpec& specific = *object.base;
 
-			ace receiveabnCode = false;
+			bool endingJedge;
 
-			if (object.autoFet == true && nowEngdingFet != NULL) {
+			//释放
+			endingJedge = object.endingFet(specific.Fet);
 
-				if (nowEngdingFet == NULL)
-					nowEngdingFet = object.endingFet;
+			//释放成功
+			if (endingJedge == true) {
 
-				//nowEngdingFet函数返回ace类型的变量
-				//如果ace为0（false）表示释放成功
-				//如果ace不为0表示出现异常，其值为异常代码
-				receiveabnCode = nowEngdingFet(specific.Fet);
+				//生成新的Fet副本
+				specific.Fet = object.createFet(newFet);
 
-			}
-
-			//释放内存失败
-			if (receiveabnCode != false) {
-
-				//取出异常码号段
-				ace codeSnippet =
-					(receiveabnCode / 10000 * 10) + (receiveabnCode / 1000 * 10);
-
-				//不是使用的指定号段
-				if (codeSnippet == 65) {
-					object.abnCode = 1;
-				}
-				else {//使用的是指定号段
-					object.abnCode = receiveabnCode;
-				}
-
+				//成功
+				if (specific.Fet != NULL)
+					StatusCode == true;
+				
 
 			}
-
-			specific.Fet = newFet;
-
-			StatucCode = true;
 		}
 
-		return StatucCode;
-
-		*/
-
-		return false;
+		return StatusCode;
 	}
 
 	null inc::getFet(void) {

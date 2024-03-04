@@ -58,17 +58,17 @@ namespace incName {
 	class inc {
 
 		inc(u8 newName = "",null newFet = NULL,
-			bool (*newCreateFet)(null nowFet) = NULL,
-			null(*newEndingFet)(null nowFet) = NULL);
+			null (*newCreateFet)(null nowFet) = NULL,
+			bool (*newEndingFet)(null nowFet) = NULL);
 
 	private:
 		
 		multe base;
 
 		//释放Fet
-		bool (*createFet)(null nowFet);
+		null (*createFet)(null nowFet);
 		//创建Fet副本
-		null (*endingFet)(null nowFet);
+		bool (*endingFet)(null nowFet);
 
 
 	public:
