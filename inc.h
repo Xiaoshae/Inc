@@ -59,9 +59,9 @@ namespace incName {
 	private:
 		
 		multe base;
-		bool autoFet;
-		null (*newFet)(null nowFet,ace* nowAce);
-		ace(*endingFet)(null nowFet);
+		bool autoFet; //是否开启自动处理Fet
+		null (*newFet)(null nowFet,ace* nowAce); //释放Fet
+		ace(*endingFet)(null nowFet);  //新建Fet副本
 
 		//异常代码，为0表示没有异常
 		ace abnCode;

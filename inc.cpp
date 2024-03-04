@@ -38,7 +38,7 @@ namespace incName {
 		bool StatucCode = false;
 
 		//无异常
-		if (object.abnCode == 0) {
+		if (object.abnCode == false) {
 
 			multeSpec& specific = *object.base;
 			specific.Name = newName;
@@ -60,7 +60,7 @@ namespace incName {
 			object.abnCode = 1;
 		}
 
-		if(object.abnCode == 0){ //无异常
+		if(object.abnCode == false){ //无异常
 
 			multeSpec& specific = *object.base;
 
