@@ -81,6 +81,8 @@ namespace incName {
 
 		null getFet(void);
 
+		bool setAutoFet(null(*newCreateFet)(null nowFet),
+			bool (*newEndingFet)(null nowFet));
 
 		friend void itf(void);
 	};

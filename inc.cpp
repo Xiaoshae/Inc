@@ -112,4 +112,23 @@ namespace incName {
 
 	}
 
+	bool inc::setAutoFet(null(*newCreateFet)(null nowFet),
+		bool (*newEndingFet)(null nowFet)) {
+
+		inc& object = *this;
+
+		bool StatusCode = false;
+
+		if (newCreateFet != NULL && newEndingFet != NULL) {
+
+			object.createFet = newCreateFet;
+			object.endingFet = endingFet;
+			StatusCode = true;
+
+		}
+		
+		return StatusCode;
+
+	}
+
 }
