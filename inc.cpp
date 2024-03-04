@@ -16,6 +16,7 @@ namespace incName {
 
 			specific.Name = newName;
 			specific.Fet = newFet;
+			specific.Her = (fh)NULL;
 			specific.Son = (sn)(NULL);
 			specific.amSon = 0;
 
