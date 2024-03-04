@@ -15,7 +15,7 @@ namespace incName {
 
 		using std::string;
 		typedef string u8;
-		typedef void* null;
+		typedef const void* null;
 		
 		typedef size_t am; //amount
 
