@@ -66,8 +66,6 @@ namespace incName {
 		null (*newFet)(null nowFet,ace* nowAce); //释放Fet
 		ace(*endingFet)(null nowFet);  //新建Fet副本
 
-		//异常代码，为0表示没有异常
-		ace abnCode;
 
 	public:
 
@@ -78,6 +76,7 @@ namespace incName {
 		bool setFet(null newFet, ace(*Fetfree)(null Fet) = NULL);
 
 		null getFet(void);
+
 
 		friend void itf(void);
 	};

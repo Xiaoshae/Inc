@@ -28,7 +28,6 @@ void incName::itf(void) {
 	cout << a.autoFet << endl;
 	cout << a.newFet << endl;
 	cout << a.endingFet << endl;
-	cout << a.abnCode << endl;
 
 
 	cout << a.getName() << endl;

@@ -24,11 +24,6 @@ namespace incName {
 			object.autoFet = false;
 			object.newFet = NULL;
 			object.endingFet = NULL;
-
-			object.abnCode = false;
-		}
-		else { //内存分配失败
-			object.abnCode = 1;
 		}
 
 	}
@@ -38,8 +33,8 @@ namespace incName {
 
 		bool StatucCode = false;
 
-		//无异常
-		if (object.abnCode == false) {
+		//结构存在
+		if (object.base != NULL) {
 
 			multeSpec& specific = *object.base;
 			specific.Name = newName;
@@ -56,7 +51,8 @@ namespace incName {
 
 		u8 nowName;
 
-		if (object.abnCode == false) {
+		//结构存在
+		if (object.base != NULL) {
 
 			multeSpec& specific = *object.base;
 			nowName = specific.Name;
@@ -68,6 +64,7 @@ namespace incName {
 		
 	bool inc::setFet(null newFet, ace(*nowEngdingFet)(null Fet)) {
 
+		/*
 		inc& object = *this;
 
 		bool StatucCode = false;
@@ -120,7 +117,9 @@ namespace incName {
 
 		return StatucCode;
 
+		*/
 
+		return false;
 	}
 
 	null inc::getFet(void) {
@@ -129,7 +128,8 @@ namespace incName {
 
 		null nowFet = NULL;
 
-		if (object.abnCode == false) {
+		//结构存在
+		if (object.base != NULL) {
 
 			multeSpec& specific = *object.base;
 			nowFet = specific.Fet;
