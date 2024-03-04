@@ -4,6 +4,7 @@
 #define __HEAD__INC__
 
 #include <string>
+#include <cstdlib>
 
 namespace incName {
 
@@ -36,7 +37,42 @@ namespace incName {
 
 	}
 	
+	using multeName::multe;
 
+	using multeName::u8;
+	using multeName::null;
+	using multeName::sn;
+	using multeName::am;
+
+	using multeName::th;
+	using multeName::type;
+
+	using multeName::thmulte;
+	using multeName::multeSpec;
+
+	typedef uint8_t ace;//abnormal code
+
+	class inc {
+
+		inc(u8 newName = "",null newFet = (null)(NULL));
+
+	private:
+		
+		multe base;
+		bool autoFet;
+		null (*newFet)(null nowFet,ace* nowAce);
+		ace(*endingFet)(null nowFet);
+
+		//异常代码，为0表示没有异常
+		ace abnCode;
+
+	public:
+
+		bool setName(u8 newName);
+
+		bool setFet(null newFet, ace(*Fetfree)(null Fet) = NULL);
+
+	};
 
 }
 
