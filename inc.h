@@ -70,6 +70,8 @@ namespace incName {
 
 		bool setName(u8 newName);
 
+		u8 getName(void);
+
 		bool setFet(null newFet, ace(*Fetfree)(null Fet) = NULL);
 
 		friend void itf(void);

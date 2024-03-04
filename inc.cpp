@@ -49,6 +49,22 @@ namespace incName {
 		return StatucCode;
 	}
 
+	u8 inc::getName(void) {
+
+		inc& object = *this;
+
+		u8 nowName;
+
+		if (object.abnCode == false) {
+
+			multeSpec& specific = *object.base;
+			nowName = specific.Name;
+
+		}
+
+		return nowName;
+	}
+
 	bool inc::setFet(null newFet, ace(*nowEngdingFet)(null Fet)) {
 
 		inc& object = *this;
