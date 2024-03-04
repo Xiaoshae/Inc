@@ -32,12 +32,12 @@ namespace incName {
 
 		typedef multeSpec** sn;
 		typedef multeSpec* multe;
-
-		const static th thmulte = sizeof(multeSpec);
+		typedef multeSpec thmulte;
 
 	}
 	
 	using multeName::multe;
+	using multeName::thmulte;
 
 	using multeName::u8;
 	using multeName::null;

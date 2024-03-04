@@ -8,7 +8,7 @@ namespace incName {
 		inc& object = *this;
 
 		
-		object.base = (multe)(new type[thmulte]);
+		object.base = new thmulte;
 
 		if (object.base != NULL) {
 
