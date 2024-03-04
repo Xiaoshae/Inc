@@ -5,9 +5,9 @@
 
 #include <string>
 
-namespace __NSPE__INC__ {
+namespace incName {
 
-	namespace __NSPE__MULTE__ {
+	namespace multeName {
 
 		typedef size_t th;
 		typedef int8_t type;
@@ -15,28 +15,30 @@ namespace __NSPE__INC__ {
 		using std::string;
 		typedef string u8;
 		typedef void* null;
-		typedef multeSpec** sn;
+		
 		typedef size_t am; //amount
 
-		typedef multeSpec* multe;
+		
 
 		struct multeSpec {
 
 			u8 Name;
 			null Fet;
-			sn Son;
+			multeSpec** Son;
 			am amSon;
 
 		};
 
+		typedef multeSpec** sn;
+		typedef multeSpec* multe;
+
 		const static th thmulte = sizeof(multeSpec);
 
 	}
+	
 
-	namespace multe = __NSPE__MULTE__;
 
 }
 
-namespace inc = __NSPE__INC__;
 
 #endif // !__INC__
