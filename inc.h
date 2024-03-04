@@ -72,6 +72,7 @@ namespace incName {
 
 		bool setFet(null newFet, ace(*Fetfree)(null Fet) = NULL);
 
+		friend void itf(void);
 	};
 
 }
