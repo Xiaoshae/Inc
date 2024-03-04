@@ -64,7 +64,7 @@ namespace incName {
 
 		return nowName;
 	}
-
+		
 	bool inc::setFet(null newFet, ace(*nowEngdingFet)(null Fet)) {
 
 		inc& object = *this;
@@ -121,4 +121,22 @@ namespace incName {
 
 
 	}
+
+	null inc::getFet(void) {
+
+		inc& object = *this;
+
+		null nowFet = NULL;
+
+		if (object.abnCode == false) {
+
+			multeSpec& specific = *object.base;
+			nowFet = specific.Fet;
+
+		}
+
+		return nowFet;
+
+	}
+
 }

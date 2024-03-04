@@ -30,4 +30,9 @@ void incName::itf(void) {
 	cout << a.endingFet << endl;
 	cout << a.abnCode << endl;
 
+
+	cout << a.getName() << endl;
+	a.setName("base");
+	cout << a.getName() << endl;
+	
 }
