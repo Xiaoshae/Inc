@@ -25,12 +25,14 @@ namespace incName {
 
 			u8 Name;
 			null Fet;
-			multeSpec** Son;
+			multeSpec* Her;		//fh Her;
+			multeSpec** Son;	//sn Son
 			am amSon;
 
 		};
 
 		typedef multeSpec** sn;
+		typedef multeSpec* fh; //father
 		typedef multeSpec* multe;
 		typedef multeSpec thmulte;
 
@@ -38,6 +40,7 @@ namespace incName {
 	
 	using multeName::multe;
 	using multeName::thmulte;
+	using multeName::fh;
 
 	using multeName::u8;
 	using multeName::null;
