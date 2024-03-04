@@ -3,7 +3,9 @@
 
 namespace incName {
 
-	inc::inc(u8 newName, null newFet) {
+	inc::inc(u8 newName, null newFet,
+		bool (*newCreateFet)(null nowFet),
+		null(*newEndingFet)(null nowFet)) {
 
 		inc& object = *this;
 
@@ -20,10 +22,8 @@ namespace incName {
 			specific.Son = (sn)(NULL);
 			specific.amSon = 0;
 
-
-			object.autoFet = false;
-			object.newFet = NULL;
-			object.endingFet = NULL;
+			object.createFet = newCreateFet;
+			object.endingFet = newEndingFet;
 		}
 
 	}
