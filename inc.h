@@ -5,6 +5,7 @@
 
 #include <string>
 #include <cstdlib>
+#include <vector>
 
 namespace incName {
 
@@ -15,28 +16,37 @@ namespace incName {
 
 		using std::string;
 		typedef string u8;
+
+		
+
 		typedef const void* null;
 		
 		typedef size_t am; //amount
 
-		
+		using std::vector;
 
 		struct multeSpec {
 
 			u8 Name;
 			null Fet;
 			multeSpec* Her;		//fh Her;
-			multeSpec** Son;	//sn Son
+			vector<multeSpec*>* Son;	//sn Son
 			am amSon;
 
 		};
-
-		typedef multeSpec** sn;
+		
+		
+		typedef multeSpec* sgsn;
+		typedef vector<sgsn>* sn;
+		typedef vector<sgsn> vesn;
 		typedef multeSpec* fh; //father
 		typedef multeSpec* multe;
 		typedef multeSpec thmulte;
 
 	}
+
+	using std::string;
+	typedef string pwd;
 	
 	using multeName::multe;
 	using multeName::thmulte;
@@ -45,6 +55,8 @@ namespace incName {
 	using multeName::u8;
 	using multeName::null;
 	using multeName::sn;
+	using multeName::vesn;
+	using multeName::sgsn;
 	using multeName::am;
 
 	using multeName::th;
@@ -53,6 +65,8 @@ namespace incName {
 	using multeName::thmulte;
 	using multeName::multeSpec;
 
+
+
 	typedef uint8_t ace;//abnormal code
 
 	class inc {
@@ -60,7 +74,7 @@ namespace incName {
 		inc(u8 newName = "",null newFet = NULL,
 			null (*newCreateFet)(null nowFet) = NULL,
 			bool (*newEndingFet)(null nowFet) = NULL);
-
+			
 	private:
 		
 		multe base;
@@ -77,12 +91,14 @@ namespace incName {
 
 		u8 getName(void);
 
-		bool setFet(null newFet, ace(*Fetfree)(null Fet) = NULL);
+		bool setFet(null newFet);
 
 		null getFet(void);
 
 		bool setAutoFet(null(*newCreateFet)(null nowFet),
 			bool (*newEndingFet)(null nowFet));
+		
+		bool insertSon(u8 newName = "", null newFet = NULL,pwd path = "");
 
 		friend void itf(void);
 	};
