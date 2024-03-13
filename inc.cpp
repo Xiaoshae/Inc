@@ -65,7 +65,8 @@ namespace incName {
 		
 		//提供创建Fet副本函数，或newFet没有数据
 		//提供释放Fet函数，或原Fet没有数据
-		if ( ( object.createFet != NULL || newFet == NULL ) && ( object.endingFet != NULL || specific.Fet == NULL)) {
+		if ( ( object.createFet != NULL || newFet == NULL ) &&
+			( object.endingFet != NULL || specific.Fet == NULL)) {
 
 			//假设无需创建newFet副本
 			null tempFet = NULL;
@@ -211,13 +212,6 @@ namespace incName {
 		return SgeMulte;
 	}
 
-	sn autoSN(sn Son, am amSon) {
 
-		if (Son == NULL) {
-			
-			
 
-		}
-
-	}
 }

@@ -12,6 +12,7 @@ int main(void) {
 
 	cout << "Welcome to infoContainer" << endl;
 
+
 	incName::itf();
 
 	return 0;
@@ -25,9 +26,7 @@ void incName::itf(void) {
 	inc a;
 	
 	cout << a.base << endl;
-	cout << a.autoFet << endl;
-	cout << a.newFet << endl;
-	cout << a.endingFet << endl;
+
 
 
 	cout << a.getName() << endl;
