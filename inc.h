@@ -71,6 +71,8 @@ namespace incName {
 
 	class inc {
 
+	public:
+
 		inc(u8 newName = "",null newFet = NULL,
 			null (*newCreateFet)(null nowFet) = NULL,
 			bool (*newEndingFet)(null nowFet) = NULL);
