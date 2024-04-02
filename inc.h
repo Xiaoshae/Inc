@@ -53,6 +53,7 @@ namespace lib_inc {
 
 	}
 
+
 	class n_inc::inc;
 
 	inline namespace n_sn{
