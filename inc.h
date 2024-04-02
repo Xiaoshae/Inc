@@ -23,7 +23,7 @@ namespace lib_inc {
 			size_t* n;
 
 		private:
-	
+
 			void copy(const t& data);
 
 		public:
@@ -44,7 +44,7 @@ namespace lib_inc {
 
 			operator t(void);
 
-			
+
 			void copy(const space<t>& s);
 
 			void share(const space<t>& s);
@@ -54,15 +54,15 @@ namespace lib_inc {
 	}
 
 
-	class n_inc::inc;
+	class inc;
 
-	inline namespace n_sn{
+	inline namespace n_sn {
 
 		class sn {
 
 		private:
 			inc*** son;
-			size_t * amSon;
+			size_t* amSon;
 
 		public:
 
@@ -87,9 +87,9 @@ namespace lib_inc {
 
 			bool push(const inc& i);
 
-			inc & pop(const size_t index);
+			inc& pop(const size_t index);
 
-			inc & pop(const string& name);
+			inc& pop(const string& name);
 
 			const inc& operator[](const size_t index) const;
 
@@ -103,68 +103,66 @@ namespace lib_inc {
 
 	}
 
-	inline namespace n_inc {
-		
-		class inc {
-			
-		private:
 
-			string name;
-			void** data;
-			inc* father;
-			sn son;
-			enum class link
-			{
-				hard = 0,
-				symbolic = 1
-			};
-			link type;
-			size_t* n_link;
+	class inc {
 
-		private:
+	private:
 
-			inc(const string& name, void* data, inc* father);
-
-			void setFather(inc* father);
-
-			void hard(const inc& i);
-
-			void symbolic(const inc& i);
-
-			void copy(const inc& i);
-
-			void* d_copy(void*& t, const void* s);
-
-
-		public:
-			
-			inc(const char* C_name = "", void* data = nullptr);
-
-			inc(const string& name, void* data = nullptr);
-
-			inc(const inc& i);
-
-			inc& operator=(const inc& i);
-
-			bool insert(const inc& i);
-
-			bool insert(const string& name, void* data);
-
-			bool remove(size_t index);
-
-			bool remove(const string& name);
-
-			const void* operator[](const size_t index) const;
-
-			void* operator[](const size_t index);
-
-			const inc& operator[](const string& name) const;
-
-			inc& operator[](const string& name);
-
+		string name;
+		void** data;
+		inc* father;
+		sn son;
+		enum class link
+		{
+			hard = 0,
+			symbolic = 1
 		};
+		link type;
+		size_t* n_link;
 
-	}
+	private:
+
+		inc(const string& name, void* data, inc* father);
+
+		void setFather(inc* father);
+
+		void hard(const inc& i);
+
+		void symbolic(const inc& i);
+
+		void copy(const inc& i);
+
+		void* d_copy(void*& t, const void* s);
+
+
+	public:
+
+		inc(const char* C_name = "", void* data = nullptr);
+
+		inc(const string& name, void* data = nullptr);
+
+		inc(const inc& i);
+
+		inc& operator=(const inc& i);
+
+		bool insert(const inc& i);
+
+		bool insert(const string& name, void* data);
+
+		bool remove(size_t index);
+
+		bool remove(const string& name);
+
+		const void* operator[](const size_t index) const;
+
+		void* operator[](const size_t index);
+
+		const inc& operator[](const string& name) const;
+
+		inc& operator[](const string& name);
+
+	};
+
 
 
 }
