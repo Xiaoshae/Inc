@@ -1,4 +1,4 @@
-﻿#include "inc.h"
+#include "inc.h"
 
 
 namespace nsl_inc {
@@ -204,7 +204,6 @@ namespace nsl_inc {
 			}
 
 			if (offset == object.amSon) {
-				offset = 0;
 				std::cerr << "sonOffset error:" << "Not Found" << std::endl;
 				throw;
 			}
@@ -235,20 +234,6 @@ namespace nsl_inc {
 
 		}
 
-		const inc& sn::operator[](const string& name) const {
-
-			const sn& object = *this;
-
-			return object[object.sonOffset(name)];
-
-		}
-
-		inc& sn::operator[](const string& name) {
-			
-			sn& object = *this;
-
-			return object[object.sonOffset(name)];
-		}
 
 	}
 

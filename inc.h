@@ -34,6 +34,10 @@ namespace nsl_inc {
 			bool reduce(void);
 			bool reduce(size_t amSon);
 
+			size_t sonOffset(const inc & i) const;
+
+			
+
 
 		public:
 
@@ -47,9 +51,13 @@ namespace nsl_inc {
 
 			inc& operator[](size_t whnum);
 
+			const inc& operator[](const string& name) const;
+
+			inc& operator[](const string& name);
+
 			bool push(const inc& i);
 
-			bool push(const string& name, void* data);
+			inc& pop(const inc& i);
 			
 		};
 
@@ -80,12 +88,14 @@ namespace nsl_inc {
 			return t;
 		}
 
-		size_t sonOffset(const inc& i, string name) const;
-
 	public:
 
-		inc(const string& name = "", void* data = nullptr)
+		inc(const string& name, void* data = nullptr)
 			: name(name), data(data), father(nullptr), son(sn()) { }
+
+		inc(const char* C_name = "", void* data = nullptr) 
+			: inc((const string)(C_name), data) { }
+
 
 		inc(const inc& i) :name(i.name),father(i.father),son(i.son) {
 
@@ -105,6 +115,8 @@ namespace nsl_inc {
 			object.data = assignment(object.data, i.data);
 			object.father = i.father;
 			object.son = i.son;
+
+			return object;
 		}
 
 		bool operator>(const inc& i) const;
@@ -114,6 +126,29 @@ namespace nsl_inc {
 		bool operator==(const inc& i) const;
 		bool operator!=(const inc& i) const;
 
+		bool insert(const inc& i) {
+
+			inc& object = *this;
+
+			return object.son.push(i);
+
+		}
+
+		bool insert(const string& name, void* data) {
+
+			inc& object = *this;
+
+			return object.insert(inc(name, data));
+
+		}
+
+		inc& remove(const inc& i) {
+
+			inc& object = *this;
+
+			return object.son.pop(i);
+
+		}
 
 
 	};
