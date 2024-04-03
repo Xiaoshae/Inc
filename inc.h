@@ -10,49 +10,7 @@ using std::cout;
 using std::cerr;
 using std::endl;
 
-namespace lib_inc {
-
-	inline namespace n_space {
-
-		template<class t>
-		class space {
-
-		private:
-
-			t* data;
-			size_t* n;
-
-		private:
-
-			void copy(const t& data);
-
-		public:
-
-			// 将一个数值 赋值给 即将要创建的类
-			// 赋值
-			space(const t& data);
-
-			// 将已有的 类 赋值给 即将要创建的类
-			// 创建链接
-			space(const space<t>& s);
-
-			~space(void);
-
-			// 将已有的 类 赋值给 已经存在的类
-			// 赋值
-			space<t>& operator=(const space<t>& s);
-
-			operator t(void);
-
-
-			void copy(const space<t>& s);
-
-			void share(const space<t>& s);
-
-		};
-
-	}
-
+namespace lib_inc {	
 
 	class inc;
 

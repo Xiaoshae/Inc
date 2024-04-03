@@ -1,12 +1,10 @@
-﻿#include <iostream>
-#include "inc.h"
+﻿#include "space.h"
 
 using namespace std;
 
 int main(void) {
 
 
-	cout << "Welcometo use inc Tools!" << endl;
 
 	return 0;
 }
