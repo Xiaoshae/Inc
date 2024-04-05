@@ -4,47 +4,37 @@ namespace lib_inc {
 
 	namespace n_sn {
 
-		sn::sn(void) {
+		//新建
+		sn::sn(void):son(nullptr),amSon(0) { }
 
-			sn& object = *this;
+		//共享
+		sn::sn(const sn& s) : son(s.son),amSon(s.amSon) { }
 
-			try {
-				object.son = new inc**;
-			}
-			catch (...) {
-				cerr << "sn object new inc** memory error" << endl;
-				throw;
-			}
-
-			try {
-				object.amSon = new size_t;
-				*(object.amSon) = 0;
-			}
-			catch (...) {
-				cerr << "sn object new size_t memory error" << endl;
-				throw;
-			}
-
-			return;
-		}
-
-		sn::sn(const sn& s) {
-
-			sn& object = *this;
-
-			//object.copy(s);
-
-			return;
-
-		}
-
+		//共享
 		sn& sn::operator=(const sn& s) {
 
 			sn& object = *this;
 
-			//object.symbolic(s);
+			object.son.share(s.son);
+			object.amSon.share(s.amSon);
 
 			return object;
+
+		}
+
+		void sn::hard(const sn& s) {
+
+
+		}
+
+		void sn::symbolic(const sn& s) {
+
+
+		}
+
+		void sn::copy(const sn& s) {
+
+
 
 		}
 	}

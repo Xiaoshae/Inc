@@ -5,29 +5,44 @@
 #define __INC__
 
 #include <iostream>
+
+#include "space.h"
+
+
+
 using std::string;
 using std::cout;
 using std::cerr;
 using std::endl;
 
-namespace lib_inc {	
+
+
+namespace lib_inc {
 
 	class inc;
+
+
+	using am = n_space::space<size_t>;
+	using sinc = n_space::space<inc**>;
+
 
 	inline namespace n_sn {
 
 		class sn {
 
 		private:
-			inc*** son;
-			size_t* amSon;
+			sinc son;
+			am amSon;
 
 		public:
 
+			// 新建
 			sn(void);
 
+			// 共享
 			sn(const sn& s);
 
+			// 共享
 			sn& operator=(const sn& s);
 
 

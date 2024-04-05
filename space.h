@@ -66,7 +66,8 @@ namespace n_space {
 
 		space<t>& object = *this;
 
-		object.pv = object.n = nullptr;
+		object.pv = nullptr;
+		object.n = nullptr;
 
 		object.copy(v);
 
@@ -79,7 +80,8 @@ namespace n_space {
 
 		space<t>& object = *this;
 
-		object.pv = object.n = nullptr;
+		object.pv = nullptr;
+		object.n = nullptr;
 
 		object.share(s);
 
@@ -215,12 +217,7 @@ namespace n_space {
 
 	}
 
-
-
 }
-
-
-
 
 
 #endif // !__SPACE__
