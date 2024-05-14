@@ -8,7 +8,7 @@
 
 #include "space.h"
 #include "sn.h"
-
+#include "link.h"
 
 using std::string;
 using std::cout;
@@ -23,15 +23,9 @@ namespace lib_inc {
 	class inc;
 
 	typedef inc* incptr;
-
-	using n_sn::sn;
-	using n_link::link;
-
 	using gen = n_space::space<void*>;
 	using am = n_space::space<size_t>;
 
-
-	class link;
 
 	class inc {
 
@@ -42,18 +36,12 @@ namespace lib_inc {
 		string name;
 		gen data;
 		incptr father;
-		sn son;
-		link links;
 
 	private:
 
 
 	public:
-
-
-		inc(void):data(nullptr),links(data,son.getSon()) {
-
-		}
+		inc(void);
 
 	};
 

@@ -9,8 +9,7 @@ using lib_inc::inc;
 
 int main(void) {
 
-	inc a();
-
+	inc a;
 
 	return 0;
 }
