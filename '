@@ -1,289 +1,49 @@
 #include "inc.h"
+#include <string>
+#include "space.h"
 
+using std::string;
 
-namespace nsl_inc {
+namespace lib_inc {
 
-	inline namespace nsl_sn {
+	inline namespace n_sn {
 
-		sn::sn(const sn& s) {
+		typedef sn* snptr;
+		typedef inc** incptr;
+		typedef am size_t;
 
-			sn& object = *this;
+		enum class type {
+			hard = 0,
+			symbolic = 1
+		};
 
-			bool event = object.expand();
+		class sn {
 
-			if (event == true) {
+		private:
 
-				for (size_t i = 0; i < s.amSon; i++) {
+			union {
+				incptr son;
+				string pointer;
+			};
 
-					object[i] = s[i];
+			am amSon;
 
-				}
+			type link;
 
+			am amHard;
+
+		public:
+
+			type GetLinkType(void) const {
+				const sn & object = *this;
+				return object.link;
 			}
 
+		};
 
-		}
-
-		sn& sn::operator=(const sn& s) {
-
-			sn& object = *this;
-
-			if (object.amSon > 0) {
-
-				if (object.amSon > s.amSon)
-					object.reduce(object.amSon - s.amSon);
-
-				else if (object.amSon < s.amSon)
-					object.expand(s.amSon - object.amSon);
-
-			}
-
-			object.amSon = s.amSon;
-
-			for (size_t i = 0; i < object.amSon; i++) {
-				object[i] = s[i];
-			}
-
-			return object;
-		}
-
-
-		bool sn::expand(void) {
-
-			sn& object = *this;
-
-			bool event = false;
-
-			// 创建内存 或 扩大内存 inc指针数组
-			inc** newptr = reinterpret_cast<inc**>
-				(realloc(object.son, sizeof(inc*) * (object.amSon + 1)));
-
-			// 内存分配成功
-			if (newptr != nullptr) {
-
-				object.son = newptr;
-
-				// 分配 inc 内存
-				try {
-					object.son[amSon] = new inc;
-				}// 分配 inc 内存失败
-				catch (const std::bad_alloc& error) {
-					object.son[amSon] = nullptr;
-					std::cerr << "memory error:" <<
-						"Failed to allocate memory for inc object" <<
-						"|" << error.what() << std::endl;
-					throw;
-				}
-
-				//分配inc内存成功
-				if (object.son[amSon] != nullptr) {
-					object.amSon++;
-					event = true;
-				}
-
-			}
-			else {
-				std::cerr << "memory error:" << "inc pointer arrya memory allocation failed" << std::endl;
-				throw;
-			}
-
-			return event;
-		}
-
-		bool sn::expand(size_t amSon) {
-
-			sn& object = *this;
-			bool event = true;
-
-			for (size_t i = 0; i < amSon && event == true; i++) {
-
-				event = object.expand();
-
-			}
-
-			return event;
-		}
-
-		bool sn::reduce(void) {
-
-			sn& object = *this;
-
-			bool event = false;
-
-			// 缩小一个内存 要求不为0
-			if (object.amSon > 0) {
-
-				delete& (object[amSon - 1]);
-
-				inc** newptr = reinterpret_cast<inc**>
-					(realloc(object.son, sizeof(inc*) * (object.amSon - 1)));
-
-				// 缩小内存失败 出现系统级错误 抛出 匿名异常
-				if (newptr == nullptr) {
-					std::cerr << "memory error:" << "Memory shrink failed" << std::endl;
-					throw;
-				}
-				else { // 缩小内存成功
-
-					object.son = newptr;
-					object.amSon--;
-
-					event = true;
-
-				}
-
-			}
-
-			return event;
-		}
-
-		bool sn::reduce(size_t amSon) {
-
-			sn& object = *this;
-			bool event = true;
-
-			for (size_t i = 0; i < amSon && event == true; i++) {
-
-				event = object.reduce();
-
-			}
-
-			return event;
-		}
-
-
-		bool sn::push(const inc& i) {
-
-			sn& object = *this;
-
-			bool event = false;
-
-			size_t offset = object.sonOffset(i);
-
-
-			if (object[offset] != i) {
-
-				bool ed_event = object.expand();
-
-				if (ed_event = true) {
-
-					for (size_t count = amSon; count > offset; count--) {
-
-						object[count] = object[count - 1];
-
-					}
-
-					object[offset] = i;
-					event = true;
-
-				}
-
-			}
-
-			return event;
-
-		}
-
-		size_t sn::sonOffset(const inc & i) const {
-
-			const sn& object = *this;
-
-			if (object.amSon == 0) {
-				std::cerr << "sonOffset error:" << "amSon == 0" << std::endl;
-				throw;
-			}
-
-			size_t offset = 0;
-
-			while (offset < object.amSon) {
-
-				if (object[offset] < i) {
-					offset++;
-				}
-
-			}
-
-			if (offset == object.amSon) {
-				std::cerr << "sonOffset error:" << "Not Found" << std::endl;
-				throw;
-			}
-			
-			return offset;
-
-		}
-
-		const inc& sn::operator[](size_t whnum) const {
-
-			const sn& object = *this;
-
-			if (whnum >= amSon)
-				throw;
-
-			return *(object.son[whnum]);
-
-		}
-
-		inc& sn::operator[](size_t whnum) {
-
-			sn& object = *this;
-
-			if (whnum >= amSon)
-				throw;
-
-			return *(object.son[whnum]);
-
-		}
 
 
 	}
 
-
-	bool inc::operator>(const inc& i)const {
-
-		const inc& object = *this;
-
-		return object.name > i.name;
-
-	}
-
-	bool inc::operator<(const inc& i)const {
-
-		const inc& object = *this;
-
-		return object.name < i.name;
-
-	}
-
-	bool inc::operator>=(const inc& i)const {
-
-		const inc& object = *this;
-
-		return object.name >= i.name;
-
-	}
-
-	bool inc::operator<=(const inc& i)const {
-
-		const inc& object = *this;
-
-		return object.name <= i.name;
-
-	}
-
-	bool inc::operator==(const inc& i)const {
-
-		const inc& object = *this;
-
-		return object.name == i.name;
-
-	}
-
-	bool inc::operator!=(const inc& i)const {
-
-		const inc& object = *this;
-
-		return object.name != i.name;
-
-	}
 
 }

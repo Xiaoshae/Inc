@@ -127,7 +127,7 @@ namespace n_space {
 
 		if (object.pv != nullptr && object.n != nullptr)
 			object.s_free();
-	
+
 
 		try {
 			object.pv = new t;
@@ -188,7 +188,7 @@ namespace n_space {
 			delete object.n;
 		}
 		else {
-			(*(object.pv))--;
+			(*(object.n))--;
 		}
 
 		return;
@@ -221,4 +221,3 @@ namespace n_space {
 
 
 #endif // !__SPACE__
-
