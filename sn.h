@@ -1,10 +1,11 @@
-﻿
+﻿#pragma once
+
 #ifndef __SN__
 
 #define __SN__
 
 #include "space.h"
-#include "inc.h"
+#include "link.h"
 
 #include <string>
 #include <cstdlib>
@@ -19,7 +20,8 @@ namespace lib_inc {
 
 		class inc;
 
-		using sinc = n_space::space<inc**>;
+		using n_link::sinc;
+		// using sinc = n_space::space<inc**>;
 		using am = n_space::space<size_t>;
 
 		class sn {

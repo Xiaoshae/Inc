@@ -1,9 +1,12 @@
 ﻿#include "link.h"
-
+#include "inc.h"
 
 namespace lib_inc {
 
 	namespace n_link {
+
+		typedef inc** linkGroup;
+
 
 		bool link::expand(void) {
 
@@ -52,6 +55,7 @@ namespace lib_inc {
 			link& object = *this;
 
 			for (int i = 0; i < object.amNotice; i++) {
+				(**object.notice).getLinks();
 
 			}
 
@@ -59,7 +63,7 @@ namespace lib_inc {
 		}
 
 
-		link::link(gen& data, sinc& son) :data(data), son(son) {
+		link::link(gen&data,sinc& son):data(data),son(son) {
 			link& object = *this;
 			object.links = method::hard;
 			object.notice = nullptr;

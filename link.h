@@ -5,10 +5,7 @@
 
 #define __LINK__
 
-
 #include "space.h"
-#include "sn.h"
-#include "inc.h"
 
 namespace lib_inc {
 
@@ -16,17 +13,20 @@ namespace lib_inc {
 
 		class inc;
 
+		using sinc = n_space::space<inc**>;
+		using gen = n_space::space<void*>;
+
 		enum class method {
 			hard = 0,
 			symbolic = 1,
 			mount = 3
 		};
 
-		typedef inc* incptr;
-		typedef inc** linkGroup;
-
 		using sinc = n_space::space<inc**>;
 		using gen = n_space::space<void*>;
+
+		typedef inc* incptr;
+		typedef inc** linkGroup;
 
 		class link {
 
