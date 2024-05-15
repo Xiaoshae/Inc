@@ -23,6 +23,8 @@ namespace lib_inc {
 
 	namespace n_sn {
 
+		using incptr = inc*;
+		using incGrouop = inc**;
 
 		using sinc = n_space::space<inc**>;
 		using am = n_space::space<size_t>;
@@ -43,9 +45,15 @@ namespace lib_inc {
 			sn(void);
 			~sn(void);
 
+		private:
+
+			bool expand(void);
+
+			void zoomOut(void);
+
 		public:
 
-			sinc& getSon(void);
+			bool Increase(void);
 
 		};
 

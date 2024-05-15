@@ -26,6 +26,8 @@ namespace lib_inc {
 	using n_sn::sn;
 	using n_link::link;
 
+	using n_link::types;
+
 	class inc {
 
 	private:
@@ -39,13 +41,40 @@ namespace lib_inc {
 		link links;
 
 	public:
-		inc(void);
+
+		inc(const char* name, const gen& data = nullptr) :
+			inc(string(name), data) {
+			;
+		}
+
+		inc(const string& name, const gen& data = nullptr);
+
 		~inc(void);
 
 	private:
 
 
 	public:
+
+		// 支持 Copy
+		bool Increase(const string& name, const gen& data = nullptr);
+
+		// 支持 Copy Hard Mount
+		// 默认 Copy
+		bool Increase(const inc& i, const types& linktype = types::Copy);
+
+		// 支持 Symbolic
+		bool Increase(const string& path, const types& linktype);
+
+		bool Copy(const inc& i);
+
+		bool Hard(const inc& i);
+
+		bool Mount(const inc& i);
+
+		bool Symbolic(const inc& i);
+
+		bool reduce(const string& name);
 
 
 	};

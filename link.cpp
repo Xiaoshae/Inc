@@ -7,14 +7,14 @@ namespace lib_inc {
 	namespace n_link {
 
 		link::link(inc & i):
-			hn_link(1),data(i.data),
-			son(i.son.son),amSon(i.son.amSon) {
-
-			link& object = *this;
-
-			object.linktype = linkMethod::hard;
-			object.notice = nullptr;
-			object.amNotice = 0;
+			linktype(types::Hard),
+			Target(nullptr),
+			hn_link(1),
+			data(i.data),
+			son(i.son.son),
+			amSon(i.son.amSon),
+			notice(nullptr),
+			amNotice(0){
 
 			return;
 

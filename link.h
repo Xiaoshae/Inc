@@ -17,10 +17,11 @@ namespace lib_inc {
 	namespace n_link {
 
 
-		enum class linkMethod {
-			hard = 0,
-			symbolic = 1,
-			mount = 3
+		enum class types {
+			Copy = 0,
+			Hard = 1,
+			Symbolic = 2,
+			Mount = 3
 		};
 
 		using sinc = n_space::space<inc**>;
@@ -34,7 +35,7 @@ namespace lib_inc {
 
 		private:
 
-			linkMethod linktype;
+			types linktype;
 
 			union {
 				string SymbolicTarget;

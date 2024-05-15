@@ -10,7 +10,7 @@ int main(void) {
 
 	cout << "Welcome to Program!" << endl;
 
-	inc a;
+	inc a = "xiaoshae";
 
 	return 0;
 }
