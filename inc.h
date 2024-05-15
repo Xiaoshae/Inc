@@ -21,14 +21,11 @@ namespace lib_inc {
 
 	class inc;
 
-
-	typedef inc* incptr;
+	using incptr = inc**;
 	using gen = n_space::space<void*>;
 
 	using n_sn::sn;
 	using n_link::link;
-
-	class link;
 
 	class inc {
 

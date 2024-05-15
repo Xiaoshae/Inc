@@ -9,9 +9,9 @@
 
 namespace lib_inc {
 
-	namespace n_link {
+	class inc;
 
-		class inc;
+	namespace n_link {
 
 		using sinc = n_space::space<inc**>;
 		using gen = n_space::space<void*>;
@@ -22,11 +22,9 @@ namespace lib_inc {
 			mount = 3
 		};
 
-		using sinc = n_space::space<inc**>;
-		using gen = n_space::space<void*>;
 
-		typedef inc* incptr;
-		typedef inc** linkGroup;
+		using incptr = inc*;
+		using linkGroup = inc**;
 
 		class link {
 
@@ -48,7 +46,7 @@ namespace lib_inc {
 
 			void zoomOut(void);
 
-			bool requestNotice(gen& data, sinc& son);
+			bool requestNotice(void);
 
 			bool responseNotice(void);
 

@@ -16,17 +16,18 @@ using std::string;
 namespace lib_inc {
 
 
+	class inc;
+
 	namespace n_sn {
 
-		class inc;
-
-		using n_link::sinc;
-		// using sinc = n_space::space<inc**>;
+		using sinc = n_space::space<inc**>;
 		using am = n_space::space<size_t>;
 
 		class sn {
 
 		private:
+
+			
 
 			sinc son;
 			am amSon;

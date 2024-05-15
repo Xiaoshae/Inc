@@ -1,12 +1,10 @@
 ﻿#include "link.h"
 #include "inc.h"
 
+
 namespace lib_inc {
 
 	namespace n_link {
-
-		typedef inc** linkGroup;
-
 
 		bool link::expand(void) {
 
@@ -36,12 +34,8 @@ namespace lib_inc {
 		}
 
 		// 上级发生变化，上级调用下级该函数进行通告
-		bool link::requestNotice(gen& data, sinc& son) {
+		bool link::requestNotice(void) {
 			link& object = *this;
-
-			// 这里的赋值需要注意,还需要在仔细判断，这里为了抽象，先这么写
-			object.data = data;
-			object.son = son;
 
 			object.responseNotice();
 
@@ -55,8 +49,7 @@ namespace lib_inc {
 			link& object = *this;
 
 			for (int i = 0; i < object.amNotice; i++) {
-				(**object.notice).getLinks();
-
+				(*(object.notice[i])).links.requestNotice();
 			}
 
 			return false;
