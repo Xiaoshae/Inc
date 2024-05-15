@@ -10,7 +10,6 @@
 #include "sn.h"
 #include "link.h"
 
-
 using std::string;
 using std::cout;
 using std::cerr;
@@ -39,13 +38,15 @@ namespace lib_inc {
 		sn son;
 		link links;
 
+	public:
+		inc(void);
+		~inc(void);
+
 	private:
 
 
 	public:
-		inc(void);
 
-		link& getLinks(void);
 
 	};
 

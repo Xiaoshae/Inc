@@ -5,7 +5,6 @@
 #define __SN__
 
 #include "space.h"
-#include "link.h"
 
 #include <string>
 #include <cstdlib>
@@ -18,16 +17,23 @@ namespace lib_inc {
 
 	class inc;
 
+	namespace n_link {
+		class link;
+	}
+
 	namespace n_sn {
+
 
 		using sinc = n_space::space<inc**>;
 		using am = n_space::space<size_t>;
 
+		using n_link::link;
+
 		class sn {
 
-		private:
+			friend class link;
 
-			
+		private:
 
 			sinc son;
 			am amSon;
@@ -35,6 +41,9 @@ namespace lib_inc {
 		public:
 
 			sn(void);
+			~sn(void);
+
+		public:
 
 			sinc& getSon(void);
 

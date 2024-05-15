@@ -8,8 +8,9 @@ using lib_inc::inc;
 
 int main(void) {
 
+	cout << "Welcome to Program!" << endl;
+
 	inc a;
-	a.getLinks();
 
 	return 0;
 }

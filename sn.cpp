@@ -9,6 +9,10 @@ namespace lib_inc {
 			;
 		}
 
+		sn::~sn(void) {
+
+		}
+
 		sinc& sn::getSon(void) {
 			sn& object = *this;
 			return object.son;

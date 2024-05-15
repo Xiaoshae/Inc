@@ -6,6 +6,9 @@
 #define __LINK__
 
 #include "space.h"
+#include <string>
+
+using std::string;
 
 namespace lib_inc {
 
@@ -13,15 +16,16 @@ namespace lib_inc {
 
 	namespace n_link {
 
-		using sinc = n_space::space<inc**>;
-		using gen = n_space::space<void*>;
 
-		enum class method {
+		enum class linkMethod {
 			hard = 0,
 			symbolic = 1,
 			mount = 3
 		};
 
+		using sinc = n_space::space<inc**>;
+		using gen = n_space::space<void*>;
+		using am = n_space::space<size_t>;
 
 		using incptr = inc*;
 		using linkGroup = inc**;
@@ -30,15 +34,26 @@ namespace lib_inc {
 
 		private:
 
-			method links;
+			linkMethod linktype;
+
+			union {
+				string SymbolicTarget;
+				incptr Target;	
+			};
+
+			am hn_link;
 
 			gen& data;
 			sinc& son;
+			am& amSon;
 
 			linkGroup notice;
 			size_t amNotice;
 
+		public:
 
+			link(inc & i);
+			~link(void);
 
 		private:
 
@@ -52,7 +67,6 @@ namespace lib_inc {
 
 		public:
 
-			link(gen& data, sinc& son);
 
 			bool append(incptr i);
 

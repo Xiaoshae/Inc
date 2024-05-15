@@ -6,6 +6,25 @@ namespace lib_inc {
 
 	namespace n_link {
 
+		link::link(inc & i):
+			hn_link(1),data(i.data),
+			son(i.son.son),amSon(i.son.amSon) {
+
+			link& object = *this;
+
+			object.linktype = linkMethod::hard;
+			object.notice = nullptr;
+			object.amNotice = 0;
+
+			return;
+
+		}
+
+		link::~link(void) {
+
+		}
+
+
 		bool link::expand(void) {
 
 			link& object = *this;
@@ -53,15 +72,6 @@ namespace lib_inc {
 			}
 
 			return false;
-		}
-
-
-		link::link(gen&data,sinc& son):data(data),son(son) {
-			link& object = *this;
-			object.links = method::hard;
-			object.notice = nullptr;
-			object.amNotice = 0;
-			return;
 		}
 
 		bool link::append(incptr i) {
