@@ -47,13 +47,17 @@ namespace lib_inc {
 
 		private:
 
-			bool expand(void);
+			void s_free(void);
 
-			void zoomOut(void);
+			bool expand(const size_t & n = 1);
+
+			void zoomOut(const size_t & n = 1);
 
 		public:
 
 			bool Increase(void);
+
+			bool Copy(const sn & s);
 
 		};
 
