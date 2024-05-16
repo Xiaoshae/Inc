@@ -63,7 +63,6 @@ namespace n_space {
 
 		operator t(void);
 
-
 		void copy(const space<t>& s);
 
 		void share(const space<t>& s);
@@ -147,8 +146,7 @@ namespace n_space {
 
 		const space<t>& tt = *this;
 
-		return (*(tt.pv) == (*(s.pv));
-
+		return ((*(tt.pv)) == (*(s.pv)));
 	}
 
 	template<class t>
@@ -156,7 +154,7 @@ namespace n_space {
 
 		const space<t>& tt = *this;
 
-		return (*(tt.pv) != (*(s.pv));
+		return ((*(tt.pv)) != (*(s.pv)));
 
 	}
 
@@ -165,14 +163,14 @@ namespace n_space {
 
 		const space<t>& tt = *this;
 
-		return (*(tt.pv) < (*(s.pv));
+		return ((*(tt.pv)) < (*(s.pv)));
 	}
 
 	template<class t>
 	bool space<t>::operator<=(const space<t>& s) const {
 		const space<t>& tt = *this;
 
-		return (*(tt.pv) <= (*(s.pv));
+		return ((*(tt.pv)) <= (*(s.pv)));
 	}
 
 	template<class t>
@@ -180,7 +178,7 @@ namespace n_space {
 
 		const space<t>& tt = *this;
 
-		return (*(tt.pv) > (*(s.pv));
+		return ((*(tt.pv)) > (*(s.pv)));
 	}
 
 	template<class t>
@@ -188,7 +186,7 @@ namespace n_space {
 
 		const space<t>& tt = *this;
 
-		return (*(tt.pv) >= (*(s.pv));
+		return ((*(tt.pv)) >= (*(s.pv)));
 	}
 
 	template<class t>
