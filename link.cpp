@@ -53,23 +53,29 @@ namespace lib_inc {
 		}
 
 		// 上级发生变化，上级调用下级该函数进行通告
-		bool link::requestNotice(void) {
+		bool link::takeOver(void) {
 			link& object = *this;
 
-			object.responseNotice();
+			object.transfer();
 
 			return true;
 
 		}
 
 		// 接收当上级的变化通告，将通告继续传递到下级
-		bool link::responseNotice(void) {
+		bool link::transfer(void) {
 
 			link& object = *this;
 
 			for (int i = 0; i < object.amNotice; i++) {
-				(*(object.notice[i])).links.requestNotice();
+				(*(object.notice[i])).links.takeOver();
 			}
+
+			return false;
+		}
+
+		// 下游发生变化，需要反馈到上游去
+		bool link::feedback(void) {
 
 			return false;
 		}
@@ -118,9 +124,7 @@ namespace lib_inc {
 		}
 
 
-
-
+		
 	}
-
 
 }

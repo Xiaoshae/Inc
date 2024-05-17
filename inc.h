@@ -66,6 +66,18 @@ namespace lib_inc {
 		// 支持 Symbolic
 		bool Increase(const string& path, const types& linktype);
 
+		// inCopy
+		bool inCopy(const inc& i);
+
+		// inHard
+		bool inHard(const inc& i);
+
+		// inSymbolic
+		bool inSymbolic(const inc& i);
+
+		// inMount
+		bool inMount(const inc& i);
+
 		bool Copy(const inc& i);
 
 		bool Hard(const inc& i);
@@ -76,6 +88,19 @@ namespace lib_inc {
 
 		bool reduce(const string& name);
 
+		bool CheckName(void) const ;
+
+		bool operator==(const inc& i) const ;
+
+		bool operator!=(const inc& i) const ;
+
+		bool operator<(const inc& i) const ;
+
+		bool operator<=(const inc& i) const ;
+
+		bool operator>(const inc& i) const ;
+
+		bool operator>=(const inc& i) const ;
 
 	};
 

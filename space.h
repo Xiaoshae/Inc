@@ -23,6 +23,8 @@ namespace n_space {
 	private:
 		void copy(const t& v); void s_free(void);
 
+		t& get_value(void);
+
 	public:
 
 		// 将一个数值 赋值给 即将要创建的类
@@ -35,11 +37,19 @@ namespace n_space {
 
 		~space(void);
 
+		operator t(void) const ;
+
 		// 将已有的 类 赋值给 已经存在的类
 		// 赋值
 		space<t>& operator=(const space<t>& s);
 
-		space<t> operator+(const space<t>& s) const;
+		//space<t> operator+(const space<t>& s) const;
+
+		space<t> operator+=(const space<t>& s);
+
+		//space<t> operator-(const space<t>& s) const;
+
+		space<t> operator-=(const space<t>& s);
 
 		bool operator==(const space<t>& s) const;
 
@@ -61,7 +71,7 @@ namespace n_space {
 
 		space<t> operator--(int dummy);
 
-		operator t(void);
+
 
 		void copy(const space<t>& s);
 
@@ -69,7 +79,7 @@ namespace n_space {
 
 		void set_value(const t& v);
 
-		t& get_value(void);
+		const t& get_value(void) const ;
 
 	};
 
@@ -121,6 +131,16 @@ namespace n_space {
 	}
 
 	template<class t>
+	space<t>::operator t(void) const {
+
+		const space<t>& object = *this;
+
+		return object.get_value();
+
+	}
+
+
+	template<class t>
 	space<t>& space<t>::operator=(const space<t>& s) {
 
 		space<t>& object = *this;
@@ -131,14 +151,37 @@ namespace n_space {
 
 	}
 
+	/*
 	template<class t>
 	space<t> space<t>::operator+(const space<t>& s) const {
 
 		const space<t>& tt = *this;
 
-		space<t> temp((*(tt.pv)) + (*(s.pv)));
+	}
+	*/
 
-		return temp;
+	template<class t>
+	space<t> space<t>::operator+=(const space<t>& s) {
+
+		const space<t>& tt = *this;
+
+	}
+
+	/*
+	template<class t>
+	space<t> space<t>::operator-(const space<t>& s) const {
+
+		const space<t>& tt = *this;
+
+	}
+	*/
+
+	template<class t>
+	space<t> space<t>::operator-=(const space<t>& s) {
+
+		const space<t>& tt = *this;
+
+
 	}
 
 	template<class t>
@@ -146,7 +189,7 @@ namespace n_space {
 
 		const space<t>& tt = *this;
 
-		return ((*(tt.pv)) == (*(s.pv)));
+		return tt.get_value() == s.get_value();
 	}
 
 	template<class t>
@@ -154,8 +197,7 @@ namespace n_space {
 
 		const space<t>& tt = *this;
 
-		return ((*(tt.pv)) != (*(s.pv)));
-
+		return tt.get_value() != s.get_value();
 	}
 
 	template<class t>
@@ -163,14 +205,14 @@ namespace n_space {
 
 		const space<t>& tt = *this;
 
-		return ((*(tt.pv)) < (*(s.pv)));
+		return tt.get_value() < s.get_value();
 	}
 
 	template<class t>
 	bool space<t>::operator<=(const space<t>& s) const {
 		const space<t>& tt = *this;
 
-		return ((*(tt.pv)) <= (*(s.pv)));
+		return tt.get_value() <= s.get_value();
 	}
 
 	template<class t>
@@ -178,7 +220,7 @@ namespace n_space {
 
 		const space<t>& tt = *this;
 
-		return ((*(tt.pv)) > (*(s.pv)));
+		return tt.get_value() > s.get_value();
 	}
 
 	template<class t>
@@ -186,14 +228,14 @@ namespace n_space {
 
 		const space<t>& tt = *this;
 
-		return ((*(tt.pv)) >= (*(s.pv)));
+		return tt.get_value() >= s.get_value();
 	}
 
 	template<class t>
 	space<t>& space<t>::operator++(void) {
 
 		space<t>& object = *this;
-		*(object.pv)++;
+		object.get_value()++;
 
 		return object;
 	}
@@ -203,9 +245,9 @@ namespace n_space {
 
 		space<t>& object = *this;
 
-		space<t> temp(*(object.pv));
+		space<t> temp(object.get_value());
 
-		*(object.pv)++;
+		object.get_value()++;
 
 		return temp;
 	}
@@ -214,7 +256,7 @@ namespace n_space {
 	space<t>& space<t>::operator--(void) {
 
 		space<t>& object = *this;
-		*(object.pv)--;
+		object.get_value()--;
 
 		return object;
 	}
@@ -224,22 +266,13 @@ namespace n_space {
 
 		space<t>& object = *this;
 
-		space<t> temp(*(object.pv));
+		space<t> temp(object.get_value());
 
-		*(object.pv)--;
+		object.get_value()--;
 
 		return temp;
 	}
 
-
-	template<class t>
-	space<t>::operator t(void) {
-
-		space<t>& object = *this;
-
-		return *(object.pv);
-
-	}
 
 	template<class t>
 	void space<t>::copy(const t& v) {
@@ -333,6 +366,14 @@ namespace n_space {
 	t& space<t>::get_value(void) {
 
 		space<t>& object = *this;
+
+		return *(object.pv);
+	}
+
+	template<class t>
+	const t& space<t>::get_value(void) const {
+
+		const space<t>& object = *this;
 
 		return *(object.pv);
 

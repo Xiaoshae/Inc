@@ -62,9 +62,15 @@ namespace lib_inc {
 
 			void zoomOut(void);
 
-			bool requestNotice(void);
+			//接收
+			bool takeOver(void);
 
-			bool responseNotice(void);
+			//传递
+			bool transfer(void);
+
+			//反馈
+			bool feedback(void);
+
 
 		public:
 
@@ -73,11 +79,10 @@ namespace lib_inc {
 
 			bool reduce(incptr i);
 
+			bool Copy(const link& links);
+
 		};
 	}
-
-
-
 }
 
 

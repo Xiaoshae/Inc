@@ -22,7 +22,7 @@ namespace lib_inc {
 
 		inc& object = *this;
 
-		return object.Copy(inc(name, data));
+		return object.inCopy(inc(name, data));
 
 		return true;
 	}
@@ -37,15 +37,15 @@ namespace lib_inc {
 
 		switch (links){
 			case types::Copy : {
-				result = object.Copy(i);
+				result = object.inCopy(i);
 				break;
 			}
 			case types::Hard : {
-				result = object.Hard(i);
+				result = object.inHard(i);
 				break;
 			}
 			case types::Mount: {
-				result = object.Mount(i);
+				result = object.inMount(i);
 				break;
 			}
 		}
@@ -60,13 +60,33 @@ namespace lib_inc {
 		return true;
 	}
 
+	bool inc::inCopy(const inc& i) {
+
+		return true;
+	}
+
+	bool inc::inHard(const inc& i) {
+
+		return true;
+	}
+
+	bool inc::inSymbolic(const inc& i) {
+
+		return true;
+	}
+
+	bool inc::inMount(const inc& i) {
+
+		return true;
+	}
+
 	bool inc::Copy(const inc& i) {
 
 		inc& object = *this;
 
 		object.name = i.name;
 		object.data = i.data;
-		//object.son = i.son.Copy();
+		object.son.Copy(i.son);
 		//object.links = i.links.Copy();
 
 		return true;
@@ -93,6 +113,55 @@ namespace lib_inc {
 		inc& object = *this;
 
 		return true;
+	}
+
+	bool inc::CheckName(void) const {
+
+		return true;
+	}
+
+	bool inc::operator==(const inc& i) const {
+
+		const inc& o = *this;
+
+		return o.name == i.name;
+	}
+
+	bool inc::operator!=(const inc& i) const {
+
+		const inc& o = *this;
+
+		return o.name != i.name;
+	}
+
+	bool inc::operator<(const inc& i) const {
+
+		const inc & o = *this;
+
+		return o.name < i.name;
+	}
+
+	bool inc::operator<=(const inc& i) const  {
+
+		const inc& o = *this;
+
+		return o.name <= i.name;
+
+	}
+
+	bool inc::operator>(const inc& i) const  {
+
+		const inc& o = *this;
+
+		return o.name > i.name;
+
+	}
+
+	bool inc::operator>=(const inc& i) const {
+
+		const inc& o = *this;
+
+		return o.name >= i.name;
 	}
 
 

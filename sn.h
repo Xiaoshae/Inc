@@ -49,6 +49,8 @@ namespace lib_inc {
 
 			void s_free(void);
 
+			bool AdjustQuantity(const size_t & n);
+
 			bool expand(const size_t & n = 1);
 
 			void zoomOut(const size_t & n = 1);
@@ -56,6 +58,15 @@ namespace lib_inc {
 		public:
 
 			bool Increase(void);
+
+			bool inCopy(const inc& i);
+
+			bool inHard(const inc& i);
+
+			bool inSymbolic(const inc& i);
+
+			bool inMount(const inc& i);
+
 
 			bool Copy(const sn & s);
 
