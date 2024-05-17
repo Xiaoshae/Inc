@@ -55,6 +55,13 @@ namespace lib_inc {
 
 			void zoomOut(const size_t & n = 1);
 
+			inc& operator[](const size_t& n);
+			const inc& operator[](const size_t& n) const;
+
+			inc& operator[](const string& name);
+			const inc& operator[](const string& name)const;
+
+
 		public:
 
 			bool Increase(void);
@@ -66,7 +73,6 @@ namespace lib_inc {
 			bool inSymbolic(const inc& i);
 
 			bool inMount(const inc& i);
-
 
 			bool Copy(const sn & s);
 

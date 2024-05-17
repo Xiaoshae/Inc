@@ -30,6 +30,66 @@ namespace lib_inc {
 			return;
 		}
 
+		inc& sn::operator[](const size_t& n) {
+
+			sn& o = *this;
+
+			if (!(n >= 0 && n <= o.amSon)) {
+				throw;
+			}
+
+			return (*(o.son[n]));
+		}
+
+		const inc& sn::operator[](const size_t& n) const {
+
+			const sn& o = *this;
+
+			if (!(n >= 0 && n <= o.amSon)) {
+				throw;
+			}
+
+			return (*(o.son[n]));
+		}
+
+		inc& sn::operator[](const string& name) {
+
+			sn& o = *this;
+			inc i(name);
+			size_t n = 0;
+
+			while (n < o.amSon) {
+				if (i == o[n]) {
+					break;
+				}
+			}
+
+			if (n == o.amSon) {
+				throw;
+			}
+
+			return o[n];
+		}
+
+		const inc& sn::operator[](const string& name) const {
+
+			const sn& o = *this;
+			inc i(name);
+			size_t n = 0;
+
+			while (n < o.amSon) {
+				if (i == o[n]) {
+					break;
+				}
+			}
+
+			if (n == o.amSon) {
+				throw;
+			}
+
+			return o[n];
+		}
+
 		bool sn::AdjustQuantity(const size_t& n) {
 
 			sn& object = *this;
@@ -132,6 +192,18 @@ namespace lib_inc {
 		bool sn::inCopy(const inc& i) {
 
 			sn& o = *this;
+
+			size_t n = 0;
+
+			if (i.CheckName() == true) {
+
+				while (n < o.amSon) {
+
+
+
+				}
+
+			}
 
 
 			return true;
