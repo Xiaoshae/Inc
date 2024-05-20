@@ -42,12 +42,23 @@ namespace lib_inc {
 
 	public:
 
-		inc(const char* name, const gen& data = nullptr) :
-			inc(string(name), data) {
+		inc(const char* name = "", const gen& data = nullptr) :
+			inc(string(name), data)
+		{
 			;
 		}
 
-		inc(const string& name, const gen& data = nullptr);
+		explicit inc(const string& name = "", const gen& data = nullptr) :
+			name(name),
+			data(nullptr),
+			father(nullptr),
+			son(),
+			links(*this)
+		{
+			;
+		}
+
+		inc(const inc& i);
 
 		~inc(void);
 
@@ -88,19 +99,19 @@ namespace lib_inc {
 
 		bool reduce(const string& name);
 
-		bool CheckName(void) const ;
+		bool CheckName(void) const;
 
-		bool operator==(const inc& i) const ;
+		bool operator==(const inc& i) const;
 
-		bool operator!=(const inc& i) const ;
+		bool operator!=(const inc& i) const;
 
-		bool operator<(const inc& i) const ;
+		bool operator<(const inc& i) const;
 
-		bool operator<=(const inc& i) const ;
+		bool operator<=(const inc& i) const;
 
-		bool operator>(const inc& i) const ;
+		bool operator>(const inc& i) const;
 
-		bool operator>=(const inc& i) const ;
+		bool operator>=(const inc& i) const;
 
 	};
 

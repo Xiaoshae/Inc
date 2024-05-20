@@ -124,6 +124,49 @@ namespace lib_inc {
 
 		}
 
+		size_t sn::computeOffset(const inc& i) const {
+
+			const sn& o = *this;
+
+			size_t offset = 0;
+
+			while (offset < o.amSon) {
+
+				if (i >= o[offset]) {
+					break;
+				}
+
+				offset++;
+
+			}
+
+			return offset;
+		}
+
+		bool sn::AdjustBackward(const size_t& n) {
+
+			sn& o = *this;
+
+			bool Judge = false;
+
+			Judge = o.expand();
+
+			if (Judge == true) {
+
+				for (size_t i = o.amSon - 1; i > n; i--) {
+
+					o.son[i] = o.son[i - 1];
+
+				}
+
+				o.son[n] = new inc("");
+
+			}
+
+			return Judge;
+
+		}
+
 		bool sn::expand(const size_t& n) {
 
 			sn& object = *this;
@@ -193,18 +236,28 @@ namespace lib_inc {
 
 			sn& o = *this;
 
+			bool Judge = false;
+
 			size_t n = 0;
+			size_t offset = o.computeOffset(i);
 
 			if (i.CheckName() == true) {
 
-				while (n < o.amSon) {
-
-
-
-				}
+				Judge = (i != o[offset]);
 
 			}
 
+			if (Judge == true) {
+
+				Judge = o.AdjustBackward(offset);
+
+			}
+
+			if (Judge == true) {
+
+				o[offset].Copy(i);
+				
+			}
 
 			return true;
 		}

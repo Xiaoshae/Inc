@@ -51,6 +51,10 @@ namespace lib_inc {
 
 			bool AdjustQuantity(const size_t & n);
 
+			size_t computeOffset(const inc& i) const ;
+
+			bool AdjustBackward(const size_t& n);
+
 			bool expand(const size_t & n = 1);
 
 			void zoomOut(const size_t & n = 1);

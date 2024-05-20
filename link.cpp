@@ -123,6 +123,26 @@ namespace lib_inc {
 			return true;
 		}
 
+		void link::Copy(const link& l) {
+
+			link& o = *this;
+
+			o.linktype = l.linktype;
+
+			if (o.linktype == types::Symbolic) {
+				o.SymbolicTarget = l.SymbolicTarget;
+			}
+			else {
+				o.Target = l.Target;
+			}
+
+			o.hn_link = 0;
+			o.notice = nullptr;
+			o.amNotice = 0;
+
+			return;
+		}
+
 
 		
 	}

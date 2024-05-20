@@ -79,7 +79,7 @@ namespace lib_inc {
 
 			bool reduce(incptr i);
 
-			bool Copy(const link& links);
+			void Copy(const link& links);
 
 		};
 	}
