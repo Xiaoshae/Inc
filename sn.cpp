@@ -7,7 +7,8 @@ namespace lib_inc {
 
 		sn::sn(void) :
 			son(nullptr),
-			amSon(0) {
+			amSon(0)
+		{
 			;
 		}
 
@@ -118,6 +119,7 @@ namespace lib_inc {
 				// 需要处理
 				if (Judge == false) {
 					cout << "错误AdjustQuantity" << endl;
+					throw;
 				}
 			}
 

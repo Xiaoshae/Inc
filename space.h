@@ -94,12 +94,12 @@ namespace n_space {
 	template<class t>
 	space<t>::space(const t& v) {
 
-		space<t>& object = *this;
+		space<t>& o = *this;
 
-		object.pv = nullptr;
-		object.n = nullptr;
+		o.pv = nullptr;
+		o.n = nullptr;
 
-		object.copy(v);
+		o.copy(v);
 
 		return;
 
@@ -109,12 +109,12 @@ namespace n_space {
 	template<class t>
 	space<t>::space(const space<t>& s) {
 
-		space<t>& object = *this;
+		space<t>& o = *this;
 
-		object.pv = nullptr;
-		object.n = nullptr;
+		o.pv = nullptr;
+		o.n = nullptr;
 
-		object.share(s);
+		o.share(s);
 
 		return;
 
@@ -124,9 +124,9 @@ namespace n_space {
 	template<class t>
 	space<t>::~space(void) {
 
-		space<t>& object = *this;
+		space<t>& o = *this;
 
-		object.s_free();
+		o.s_free();
 
 		return;
 
@@ -135,9 +135,9 @@ namespace n_space {
 	template<class t>
 	space<t>::operator t(void) const {
 
-		const space<t>& object = *this;
+		const space<t>& o = *this;
 
-		return object.get_value();
+		return o.get_value();
 
 	}
 
@@ -145,11 +145,11 @@ namespace n_space {
 	template<class t>
 	space<t>& space<t>::operator=(const space<t>& s) {
 
-		space<t>& object = *this;
+		space<t>& o = *this;
 
-		object.set_value(*(s.pv));
+		o.set_value(*(s.pv));
 
-		return object;
+		return o;
 
 	}
 
@@ -236,20 +236,20 @@ namespace n_space {
 	template<class t>
 	space<t>& space<t>::operator++(void) {
 
-		space<t>& object = *this;
-		object.get_value()++;
+		space<t>& o = *this;
+		o.get_value()++;
 
-		return object;
+		return o;
 	}
 
 	template<class t>
 	space<t> space<t>::operator++(int dummy) {
 
-		space<t>& object = *this;
+		space<t>& o = *this;
 
-		space<t> temp(object.get_value());
+		space<t> temp(o.get_value());
 
-		object.get_value()++;
+		o.get_value()++;
 
 		return temp;
 	}
@@ -257,20 +257,20 @@ namespace n_space {
 	template<class t>
 	space<t>& space<t>::operator--(void) {
 
-		space<t>& object = *this;
-		object.get_value()--;
+		space<t>& o = *this;
+		o.get_value()--;
 
-		return object;
+		return o;
 	}
 
 	template<class t>
 	space<t> space<t>::operator--(int dummy) {
 
-		space<t>& object = *this;
+		space<t>& o = *this;
 
-		space<t> temp(object.get_value());
+		space<t> temp(o.get_value());
 
-		object.get_value()--;
+		o.get_value()--;
 
 		return temp;
 	}
@@ -279,15 +279,15 @@ namespace n_space {
 	template<class t>
 	void space<t>::copy(const t& v) {
 
-		space<t>& object = *this;
+		space<t>& o = *this;
 
-		if (object.pv != nullptr && object.n != nullptr)
-			object.s_free();
+		if (o.pv != nullptr && o.n != nullptr)
+			o.s_free();
 
 
 		try {
-			object.pv = new t;
-			*(object.pv) = v;
+			o.pv = new t;
+			*(o.pv) = v;
 		}
 		catch (...) {
 			cerr << "space class init new t memory error" << endl;
@@ -295,8 +295,8 @@ namespace n_space {
 		}
 
 		try {
-			object.n = new size_t;
-			*(object.n) = 1;
+			o.n = new size_t;
+			*(o.n) = 1;
 		}
 		catch (...) {
 			cerr << "space class init new size_t memory error" << endl;
@@ -310,9 +310,9 @@ namespace n_space {
 	template<class t>
 	void space<t>::copy(const space<t>& s) {
 
-		space<t>& object = *this;
+		space<t>& o = *this;
 
-		object.copy(*(object.pv));
+		o.copy(*(o.pv));
 
 		return;
 
@@ -321,14 +321,14 @@ namespace n_space {
 	template<class t>
 	void space<t>::share(const space<t>& s) {
 
-		space<t>& object = *this;
+		space<t>& o = *this;
 
-		if (object.pv != nullptr && object.n != nullptr)
-			object.s_free();
+		if (o.pv != nullptr && o.n != nullptr)
+			o.s_free();
 
-		object.pv = s.pv;
-		object.n = s.n;
-		(*(object.n))++;
+		o.pv = s.pv;
+		o.n = s.n;
+		(*(o.n))++;
 
 		return;
 
@@ -337,14 +337,14 @@ namespace n_space {
 	template<class t>
 	void space<t>::s_free(void) {
 
-		space<t>& object = *this;
+		space<t>& o = *this;
 
-		if (*(object.n) <= 1) {
-			delete object.pv;
-			delete object.n;
+		if (*(o.n) <= 1) {
+			delete o.pv;
+			delete o.n;
 		}
 		else {
-			(*(object.n))--;
+			(*(o.n))--;
 		}
 
 		return;
@@ -356,9 +356,9 @@ namespace n_space {
 	template<class t>
 	void space<t>::set_value(const t& v) {
 
-		space<t>& object = *this;
+		space<t>& o = *this;
 
-		*(object.pv) = v;
+		*(o.pv) = v;
 
 		return;
 
@@ -367,17 +367,17 @@ namespace n_space {
 	template<class t>
 	t& space<t>::get_value(void) {
 
-		space<t>& object = *this;
+		space<t>& o = *this;
 
-		return *(object.pv);
+		return *(o.pv);
 	}
 
 	template<class t>
 	const t& space<t>::get_value(void) const {
 
-		const space<t>& object = *this;
+		const space<t>& o = *this;
 
-		return *(object.pv);
+		return *(o.pv);
 
 	}
 

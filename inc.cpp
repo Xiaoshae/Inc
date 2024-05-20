@@ -132,7 +132,7 @@ namespace lib_inc {
 
 	bool inc::reduce(const string& name) {
 
-		inc& object = *this;
+		inc& o = *this;
 
 		return true;
 	}
