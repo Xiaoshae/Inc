@@ -20,16 +20,6 @@ namespace lib_inc {
 	}
 	*/
 
-	inc::inc(const inc& i) :data(nullptr), links(*this) {
-
-		inc& o = *this;
-
-		o.Copy(i);
-
-		return;
-
-	}
-
 	inc::~inc(void) {
 
 	}
@@ -41,7 +31,6 @@ namespace lib_inc {
 
 		return o.inCopy(inc(name, data));
 
-		return true;
 	}
 
 	// 支持	Copy Hard Mount
@@ -82,9 +71,7 @@ namespace lib_inc {
 
 		inc& o = *this;
 
-		o.son.inCopy(i);
-
-		return true;
+		return o.son.inCopy(i);
 	}
 
 	bool inc::inHard(const inc& i) {
@@ -114,17 +101,7 @@ namespace lib_inc {
 		return true;
 	}
 
-	bool inc::Hard(const inc& i) {
-
-		return true;
-	}
-
 	bool inc::Mount(const inc& i) {
-
-		return true;
-	}
-
-	bool inc::Symbolic(const inc& i) {
 
 		return true;
 	}

@@ -24,6 +24,12 @@ namespace lib_inc {
 			Mount = 3
 		};
 
+		enum class ctypes {
+			// 被挂载点删除
+			Delete = 0,
+			UpperLayer = 1
+		};
+
 		using sinc = n_space::space<inc**>;
 		using gen = n_space::space<void*>;
 		using am = n_space::space<size_t>;
@@ -70,13 +76,13 @@ namespace lib_inc {
 			void zoomOut(void);
 
 			//接收
-			bool takeOver(void);
+			bool takeOver(ctypes cs);
 
 			//传递
-			bool transfer(void);
+			bool transfer(ctypes cs);
 
 			//反馈
-			bool feedback(void);
+			bool feedback(ctypes cs);
 
 
 		public:
@@ -86,7 +92,7 @@ namespace lib_inc {
 
 			bool reduce(incptr i);
 
-			void Copy(const link& links);
+			void Copy(const link& l);
 
 		};
 	}

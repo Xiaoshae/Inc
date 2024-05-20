@@ -43,6 +43,7 @@ namespace lib_inc {
 			sn& o = *this;
 
 			if (!(n >= 0 && n <= o.amSon)) {
+				cout << "Error:out of index" << endl;
 				throw;
 			}
 
@@ -54,6 +55,7 @@ namespace lib_inc {
 			const sn& o = *this;
 
 			if (!(n >= 0 && n <= o.amSon)) {
+				cout << "Error:out of index" << endl;
 				throw;
 			}
 
@@ -74,6 +76,7 @@ namespace lib_inc {
 			}
 
 			if (n == o.amSon) {
+				cout << "Not found" << endl;
 				throw;
 			}
 
@@ -93,6 +96,7 @@ namespace lib_inc {
 			}
 
 			if (n == o.amSon) {
+				cout << "Not found" << endl;
 				throw;
 			}
 
@@ -278,8 +282,14 @@ namespace lib_inc {
 				o[offset].Copy(i);
 
 			}
+			else {
 
-			return true;
+				cout << "Error:class sn inCopy to AdjustBackward" << endl;
+				throw;
+
+			}
+
+			return Judge;
 		}
 
 		bool sn::inHard(const inc& i) {

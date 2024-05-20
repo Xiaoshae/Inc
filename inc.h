@@ -91,11 +91,7 @@ namespace lib_inc {
 
 		bool Copy(const inc& i);
 
-		bool Hard(const inc& i);
-
 		bool Mount(const inc& i);
-
-		bool Symbolic(const inc& i);
 
 		bool reduce(const string& name);
 
@@ -106,6 +102,10 @@ namespace lib_inc {
 		void* GetData(void) const;
 
 		size_t GetSonquantity(void) const;
+
+		bool joinLink(const inc& i);
+
+		bool unLink(const inc& i);
 
 		operator void* (void) const ;
 
