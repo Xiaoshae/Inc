@@ -72,7 +72,7 @@ namespace lib_inc {
 
 		// 支持 Copy Hard Mount
 		// 默认 Copy
-		bool Increase(const inc& i, const types& linktype = types::Copy);
+		bool Increase(const inc& i, const types& linktype);
 
 		// 支持 Symbolic
 		bool Increase(const string& path, const types& linktype);
@@ -100,6 +100,22 @@ namespace lib_inc {
 		bool reduce(const string& name);
 
 		bool CheckName(void) const;
+
+		string GetName(void) const;
+
+		void* GetData(void) const;
+
+		size_t GetSonquantity(void) const;
+
+		operator void* (void) const ;
+
+		inc& operator[](const size_t & n);
+
+		const inc& operator[](const size_t& n)const;
+
+		inc& operator[](const string& name);
+
+		const inc& operator[](const string& name)const;
 
 		bool operator==(const inc& i) const;
 

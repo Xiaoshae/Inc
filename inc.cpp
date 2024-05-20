@@ -178,6 +178,68 @@ namespace lib_inc {
 
 
 		return Judge;
+	
+	}
+
+	string inc::GetName(void) const {
+
+		const inc& o = *this;
+
+		return o.name;
+	}
+
+	void* inc::GetData(void) const {
+
+		const inc& o = *this;
+
+		return o.data;
+	}
+
+	size_t inc::GetSonquantity(void) const {
+
+		const inc& o = *this;
+
+		return o.son.Getquantity();
+
+	}
+
+	inc::operator void* (void) const {
+
+		const inc& o = *this;
+
+		return o.data;
+	}
+
+	inc& inc::operator[](const size_t& n) {
+
+		inc& o = *this;
+
+		return o.son[n];
+
+	}
+
+	const inc& inc::operator[](const size_t& n) const {
+
+		const inc& o = *this;
+
+		return o.son[n];
+
+	}
+
+	inc& inc::operator[](const string& name) {
+
+		inc& o = *this;
+
+		return o.son[name];
+
+	}
+
+	const inc& inc::operator[](const string& name) const {
+
+		const inc& o = *this;
+
+		return o.son[name];
+
 	}
 
 	bool inc::operator==(const inc& i) const {

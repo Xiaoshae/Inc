@@ -21,7 +21,9 @@ namespace n_space {
 		size_t* n;
 
 	private:
-		void copy(const t& v); void s_free(void);
+		void copy(const t& v);
+			
+		void s_free(void);
 
 		t& get_value(void);
 

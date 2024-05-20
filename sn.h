@@ -49,21 +49,15 @@ namespace lib_inc {
 
 			void s_free(void);
 
-			bool AdjustQuantity(const size_t & n);
+			bool AdjustQuantity(const size_t& n);
 
-			size_t computeOffset(const inc& i) const ;
+			size_t computeOffset(const inc& i) const;
 
 			bool AdjustBackward(const size_t& n);
 
-			bool expand(const size_t & n = 1);
+			bool expand(const size_t& n = 1);
 
-			void zoomOut(const size_t & n = 1);
-
-			inc& operator[](const size_t& n);
-			const inc& operator[](const size_t& n) const;
-
-			inc& operator[](const string& name);
-			const inc& operator[](const string& name)const;
+			void zoomOut(const size_t& n = 1);
 
 
 		public:
@@ -78,7 +72,16 @@ namespace lib_inc {
 
 			bool inMount(const inc& i);
 
-			bool Copy(const sn & s);
+			bool Copy(const sn& s);
+
+			size_t Getquantity(void) const;
+
+			inc& operator[](const size_t& n);
+			const inc& operator[](const size_t& n) const;
+
+			inc& operator[](const string& name);
+			const inc& operator[](const string& name)const;
+
 
 		};
 

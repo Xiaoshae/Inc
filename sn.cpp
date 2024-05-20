@@ -30,6 +30,13 @@ namespace lib_inc {
 			return;
 		}
 
+		size_t sn::Getquantity(void) const {
+
+			const sn& o = *this;
+
+			return o.amSon;
+		}
+
 		inc& sn::operator[](const size_t& n) {
 
 			sn& o = *this;
@@ -62,6 +69,7 @@ namespace lib_inc {
 				if (i == o[n]) {
 					break;
 				}
+				n++;
 			}
 
 			if (n == o.amSon) {
@@ -132,7 +140,7 @@ namespace lib_inc {
 
 			while (offset < o.amSon) {
 
-				if (i >= o[offset]) {
+				if (i <= o[offset]) {
 					break;
 				}
 
@@ -172,18 +180,18 @@ namespace lib_inc {
 			sn& o = *this;
 
 			o.amSon = o.amSon + n;
-			incGrouop newSon = reinterpret_cast<incGrouop>(realloc(o.son, (o.amSon) * 8));
+			incGrouop newSon = reinterpret_cast<incGrouop>(realloc(o.son, (o.amSon) * sizeof(void*)));
 
-			// 内存扩大失败
-			// 此处需要处理
-			cout << "警告:代码编写未完成!/t[class sn;bool expand(void) function!" << endl;
 			if (newSon == nullptr) {
 
+				// 内存扩大失败
+				// 此处需要处理
+				cout << "警告:代码编写未完成!/t[class sn;bool expand(void) function!" << endl;
 				o.amSon = o.amSon - n;
+				throw;
 
 			}
 
-			o.amSon++;
 			o.son = newSon;
 
 			return true;
@@ -243,7 +251,17 @@ namespace lib_inc {
 
 			if (i.CheckName() == true) {
 
-				Judge = (i != o[offset]);
+				if (offset == o.amSon) {
+					Judge = true;
+				}
+				else {
+					Judge = (i != o[offset]);
+				}
+
+				if (Judge == false) {
+					cout << "Error:inCopy Name Error";
+					throw;
+				}
 
 			}
 
@@ -256,7 +274,7 @@ namespace lib_inc {
 			if (Judge == true) {
 
 				o[offset].Copy(i);
-				
+
 			}
 
 			return true;
