@@ -37,9 +37,9 @@ namespace lib_inc {
 	// 支持Copy
 	bool inc::Increase(const string& name, const gen& data) {
 
-		inc& object = *this;
+		inc& o = *this;
 
-		return object.inCopy(inc(name, data));
+		return o.inCopy(inc(name, data));
 
 		return true;
 	}
@@ -48,26 +48,26 @@ namespace lib_inc {
 	// 默认	Copy
 	bool inc::Increase(const inc& i, const types& links) {
 
-		inc& object = *this;
+		inc& o = *this;
 
-		bool result = false;
+		bool Judge = false;
 
 		switch (links) {
 		case types::Copy: {
-			result = object.inCopy(i);
+			Judge = o.inCopy(i);
 			break;
 		}
 		case types::Hard: {
-			result = object.inHard(i);
+			Judge = o.inHard(i);
 			break;
 		}
 		case types::Mount: {
-			result = object.inMount(i);
+			Judge = o.inMount(i);
 			break;
 		}
 		}
 
-		return result;
+		return Judge;
 
 	}
 

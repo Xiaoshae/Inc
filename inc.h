@@ -48,7 +48,7 @@ namespace lib_inc {
 			;
 		}
 
-		explicit inc(const string& name = "", const gen& data = nullptr) :
+		explicit inc(const string& name, const gen& data = nullptr) :
 			name(name),
 			data(nullptr),
 			father(nullptr),

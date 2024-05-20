@@ -17,15 +17,15 @@ namespace lib_inc {
 
 		void sn::s_free(void) {
 
-			sn& object = *this;
+			sn& o = *this;
 
-			for (size_t i = 0; i < object.amSon; i++) {
+			for (size_t i = 0; i < o.amSon; i++) {
 
-				delete (object.son)[i];
+				delete (o.son)[i];
 
 			}
 
-			delete (incGrouop)(object.son);
+			delete (incGrouop)(o.son);
 
 			return;
 		}
@@ -92,19 +92,19 @@ namespace lib_inc {
 
 		bool sn::AdjustQuantity(const size_t& n) {
 
-			sn& object = *this;
+			sn& o = *this;
 
 			bool Judge = true;
 
-			for (size_t i = n; i < object.amSon; i++) {
-				delete object.son[i];
+			for (size_t i = n; i < o.amSon; i++) {
+				delete o.son[i];
 			}
 
-			if (object.amSon - n > 0) {
-				object.zoomOut(object.amSon - n);
+			if (o.amSon - n > 0) {
+				o.zoomOut(o.amSon - n);
 			}
 			else {
-				Judge = object.expand(n - object.amSon);
+				Judge = o.expand(n - o.amSon);
 
 				// 增大失败
 				// 需要处理
@@ -115,8 +115,8 @@ namespace lib_inc {
 
 			if (Judge == true) {
 
-				for (size_t i = object.amSon; i < n; i++) {
-					object.son[i] = new inc("");
+				for (size_t i = o.amSon; i < n; i++) {
+					o.son[i] = new inc("");
 				}
 			}
 
@@ -159,7 +159,7 @@ namespace lib_inc {
 
 				}
 
-				o.son[n] = new inc("");
+				o.son[n] = new inc;
 
 			}
 
@@ -169,38 +169,38 @@ namespace lib_inc {
 
 		bool sn::expand(const size_t& n) {
 
-			sn& object = *this;
+			sn& o = *this;
 
-			object.amSon = object.amSon + n;
-			incGrouop newSon = reinterpret_cast<incGrouop>(realloc(object.son, (object.amSon) * 8));
+			o.amSon = o.amSon + n;
+			incGrouop newSon = reinterpret_cast<incGrouop>(realloc(o.son, (o.amSon) * 8));
 
 			// 内存扩大失败
 			// 此处需要处理
 			cout << "警告:代码编写未完成!/t[class sn;bool expand(void) function!" << endl;
 			if (newSon == nullptr) {
 
-				object.amSon = object.amSon - n;
+				o.amSon = o.amSon - n;
 
 			}
 
-			object.amSon++;
-			object.son = newSon;
+			o.amSon++;
+			o.son = newSon;
 
 			return true;
 		}
 
 		void sn::zoomOut(const size_t& n) {
 
-			sn& object = *this;
+			sn& o = *this;
 
-			if (object.amSon - n > 0) {
-				object.amSon = object.amSon - n;
+			if (o.amSon - n > 0) {
+				o.amSon = o.amSon - n;
 			}
 			else {
-				object.amSon = 0;
+				o.amSon = 0;
 			}
 
-			object.son = reinterpret_cast<incGrouop>(realloc(object.son, (object.amSon * 8)));
+			o.son = reinterpret_cast<incGrouop>(realloc(o.son, (o.amSon * 8)));
 
 			return;
 		}

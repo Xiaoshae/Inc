@@ -27,7 +27,7 @@ namespace lib_inc {
 
 		bool link::expand(void) {
 
-			link& object = *this;
+			link& o = *this;
 
 			linkGroup newNotice = reinterpret_cast<linkGroup>(realloc(notice, (amNotice + 1) * 8));
 
@@ -35,8 +35,8 @@ namespace lib_inc {
 				;
 			}
 
-			object.notice = newNotice;
-			object.amNotice++;
+			o.notice = newNotice;
+			o.amNotice++;
 
 			return true;
 
@@ -44,19 +44,19 @@ namespace lib_inc {
 
 		void link::zoomOut(void) {
 
-			link& object = *this;
+			link& o = *this;
 
-			object.amNotice--;
-			object.notice = reinterpret_cast<linkGroup>(realloc(notice, object.amNotice * 8));
+			o.amNotice--;
+			o.notice = reinterpret_cast<linkGroup>(realloc(notice, o.amNotice * 8));
 
 			return;
 		}
 
 		// 上级发生变化，上级调用下级该函数进行通告
 		bool link::takeOver(void) {
-			link& object = *this;
+			link& o = *this;
 
-			object.transfer();
+			o.transfer();
 
 			return true;
 
@@ -65,10 +65,10 @@ namespace lib_inc {
 		// 接收当上级的变化通告，将通告继续传递到下级
 		bool link::transfer(void) {
 
-			link& object = *this;
+			link& o = *this;
 
-			for (int i = 0; i < object.amNotice; i++) {
-				(*(object.notice[i])).links.takeOver();
+			for (int i = 0; i < o.amNotice; i++) {
+				(*(o.notice[i])).links.takeOver();
 			}
 
 			return false;
@@ -82,43 +82,43 @@ namespace lib_inc {
 
 		bool link::append(incptr i) {
 
-			link& object = *this;
+			link& o = *this;
 
-			bool Judge = object.expand();
+			bool Judge = o.expand();
 
 			if (Judge != true) {
 
 			}
 
-			object.notice[amNotice - 1] = i;
+			o.notice[amNotice - 1] = i;
 
 			return true;
 		}
 
 		bool link::reduce(incptr i) {
 
-			link& object = *this;
+			link& o = *this;
 
 
 			size_t n = 0;
-			while (n < object.amNotice) {
-				if (object.notice[n] == i) {
+			while (n < o.amNotice) {
+				if (o.notice[n] == i) {
 					break;
 				}
 				n++;
 			}
 
 			// linkGroupo中不存在这个incptr
-			if (n == object.amNotice) {
+			if (n == o.amNotice) {
 
 			}
 
-			while (n < object.amNotice - 1) {
-				object.notice[n] = object.notice[n + 1];
+			while (n < o.amNotice - 1) {
+				o.notice[n] = o.notice[n + 1];
 				n++;
 			}
 
-			object.zoomOut();
+			o.zoomOut();
 
 			return true;
 		}
@@ -136,7 +136,7 @@ namespace lib_inc {
 				o.Target = l.Target;
 			}
 
-			o.hn_link = 0;
+			o.hn_link = 1;
 			o.notice = nullptr;
 			o.amNotice = 0;
 

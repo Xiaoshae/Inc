@@ -35,20 +35,27 @@ namespace lib_inc {
 
 		private:
 
+			// 当前inc的类型 
 			types linktype;
 
 			union {
+				// 相对/绝对路径的Symbolic
 				string SymbolicTarget;
+				// 直接挂载到某处
 				incptr Target;	
 			};
 
+			
 			am hn_link;
 
 			gen& data;
 			sinc& son;
 			am& amSon;
 
+			// 链接到当前inc的节点组
 			linkGroup notice;
+
+			// 节点组数量
 			size_t amNotice;
 
 		public:
