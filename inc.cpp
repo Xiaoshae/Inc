@@ -24,59 +24,110 @@ namespace lib_inc {
 
 	}
 
-	// 支持Copy
-	bool inc::Increase(const string& name, const gen& data) {
+	// 支持 None Hard
+	// 默认 None
+	bool inc::inCrease(const string& name, const gen& data) {
 
 		inc& o = *this;
 
-		return o.inCopy(inc(name, data));
+		bool judge = false;
+
+		if (nullptr == data)
+			judge = o.inNone(inc(name, data));
+		else
+			judge = o.inHard(inc(name, data));
+
+		return judge;
 
 	}
 
-	// 支持	Copy Hard Mount
-	// 默认	Copy
-	bool inc::Increase(const inc& i, const types& links) {
+	// 支持 None Hard inFolder Mount isSymbolic(const inc & i) inHardLink
+	// 默认 Hard
+	bool inc::inCrease(const inc& i, const types& ts) {
 
 		inc& o = *this;
 
-		bool Judge = false;
+		bool judge = false;
 
-		switch (links) {
-		case types::Copy: {
-			Judge = o.inCopy(i);
+		switch (ts) {
+		case types::None: {
+			judge = o.inNone(i);
 			break;
 		}
 		case types::Hard: {
-			Judge = o.inHard(i);
+			judge = o.inHard(i);
+			break;
+		}
+		case types::Folder: {
+			judge = o.inFolder(i);
 			break;
 		}
 		case types::Mount: {
-			Judge = o.inMount(i);
+			judge = o.inMount(i);
+			break;
+		}
+		case types::Symbolic: {
+			judge = o.inSymbolic(i);
+			break;
+		}
+		case types::HardLink: {
+			judge = o.inHardLink(i);
 			break;
 		}
 		}
 
-		return Judge;
+		return judge;
 
 	}
 
 	// 支持 Symbolic
-	// ts = types 简称
-	bool inc::Increase(const string& path, const types& ts) {
-
-		return true;
-	}
-
-	bool inc::inCopy(const inc& i) {
+	bool inc::inCrease(const string& name, const string & path) {
 
 		inc& o = *this;
 
-		return o.son.inCopy(i);
+		bool judge = false;
+
+		return judge;
+	}
+
+	bool inc::inNone(const string& name) {
+
+
+	}
+
+	bool inc::inNone(const inc& i) {
+
+	}
+
+	bool inc::inHard(const string& name, const gen& data) {
+
+
 	}
 
 	bool inc::inHard(const inc& i) {
 
+		inc& o = *this;
+
+		bool judge = false;
+
+		if (i.CheckName() == true)
+			judge = o.son.inCrease(i);
+
+		return judge;
+	}
+
+	bool inc::inFolder(const inc& i) {
+
 		return true;
+	}
+
+	bool inc::inMount(const inc& i) {
+
+		return true;
+	}
+
+	bool inc::inSymbolic(const string& name, const string& path) {
+
 	}
 
 	bool inc::inSymbolic(const inc& i) {
@@ -84,7 +135,7 @@ namespace lib_inc {
 		return true;
 	}
 
-	bool inc::inMount(const inc& i) {
+	bool inc::inHardLink(const inc& i) {
 
 		return true;
 	}
@@ -101,10 +152,6 @@ namespace lib_inc {
 		return true;
 	}
 
-	bool inc::Mount(const inc& i) {
-
-		return true;
-	}
 
 
 	bool inc::reduce(const string& name) {
@@ -118,7 +165,7 @@ namespace lib_inc {
 
 		const inc& o = *this;
 
-		bool Judge = true;
+		bool judge = true;
 
 		size_t i = 0, j, length;
 
@@ -137,7 +184,7 @@ namespace lib_inc {
 				while (j < 9) {
 
 					if (Name[i] == special_chars[j]) {
-						Judge = false;
+						judge = false;
 						break;
 					}
 
@@ -149,12 +196,12 @@ namespace lib_inc {
 
 		}
 		else {
-			Judge = false;
+			judge = false;
 		}
 
 
 
-		return Judge;
+		return judge;
 	
 	}
 

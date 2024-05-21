@@ -17,11 +17,12 @@ namespace lib_inc {
 
 
 		enum class types {
-			Copy = 0,
+			None = 0,
 			Hard = 1,
-			Symbolic = 2,
-			Mount = 3,
-			Folder = 4
+			Folder = 2,
+			Mount = 4,
+			Symbolic = 8,
+			HardLink = 16
 		};
 
 		enum class ctypes {
@@ -29,39 +30,42 @@ namespace lib_inc {
 			Delete = 0,
 			UpperLayer = 1,
 			JoinLink = 2,
-			UnLink = 3
+			UnLink = 4
 		};
 
 		using sinc = n_space::space<inc**>;
 		using gen = n_space::space<void*>;
 		using am = n_space::space<size_t>;
 
-		using incptr = inc*;
+		using inp = inc*;
 		using linkGroup = inc**;
 
 		class link {
 
 		private:
 
-			// 当前inc的类型 
-			types linktype;
+			// 当前inc的类型  types
+			types ts;
 
 			union {
-				// 相对/绝对路径的Symbolic
-				string SymbolicTarget;
-				// 直接挂载到某处
-				incptr Target;	
+				// 相对/绝对路径的Symbolic   Symbolic Target
+				string stg;
+				// 直接挂载到某处 Target
+				incptr tg;	
 			};
 
 		
-			// 硬链接 数量
-			am hn_link;
+			// 硬链接 数量 Hard Number
+			am hn;
 
 			// 当一个普通类型从成为挂载类型，则将普通类型中原有的son保存下来
 			// 当取消挂载的时候，在设置回去
 
 			// son的备份
-			linkGroup backSon;
+			sinc sonback;
+
+			// amSon的备份
+			am 	amSonback;
 
 			gen& data;
 			sinc& son;

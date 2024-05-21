@@ -46,7 +46,7 @@ int main(void) {
 
 		cin >> name;
 	
-		a.Increase(name);
+		a.inCrease(name);
 		
 		cout << "Name:\t" << a[name].GetName() << "\t" << a[name] << "\t" << "Quantity:\t" << a.GetSonquantity() << endl << endl;
 

@@ -107,7 +107,7 @@ namespace lib_inc {
 
 			sn& o = *this;
 
-			bool Judge = true;
+			bool judge = true;
 
 			for (size_t i = n; i < o.amSon; i++) {
 				delete o.son[i];
@@ -117,24 +117,24 @@ namespace lib_inc {
 				o.zoomOut(o.amSon - n);
 			}
 			else {
-				Judge = o.expand(n - o.amSon);
+				judge = o.expand(n - o.amSon);
 
 				// 增大失败
 				// 需要处理
-				if (Judge == false) {
+				if (judge == false) {
 					cout << "错误AdjustQuantity" << endl;
 					throw;
 				}
 			}
 
-			if (Judge == true) {
+			if (judge == true) {
 
 				for (size_t i = o.amSon; i < n; i++) {
 					o.son[i] = new inc("");
 				}
 			}
 
-			return Judge;
+			return judge;
 
 		}
 
@@ -161,11 +161,11 @@ namespace lib_inc {
 
 			sn& o = *this;
 
-			bool Judge = false;
+			bool judge = false;
 
-			Judge = o.expand();
+			judge = o.expand();
 
-			if (Judge == true) {
+			if (judge == true) {
 
 				for (size_t i = o.amSon - 1; i > n; i--) {
 
@@ -177,7 +177,7 @@ namespace lib_inc {
 
 			}
 
-			return Judge;
+			return judge;
 
 		}
 
@@ -223,14 +223,14 @@ namespace lib_inc {
 
 			sn& t = *this;
 
-			bool Judge = true;
+			bool judge = true;
 
 			if (t.amSon != s.amSon) {
 				size_t n = t.amSon > s.amSon ? (t.amSon - s.amSon) : (s.amSon - t.amSon);
-				Judge = t.AdjustQuantity(t.amSon);
+				judge = t.AdjustQuantity(t.amSon);
 			}
 
-			if (Judge == true) {
+			if (judge == true) {
 
 				t.amSon = s.amSon;
 
@@ -243,14 +243,14 @@ namespace lib_inc {
 
 			}
 
-			return Judge;
+			return judge;
 		}
 
-		bool sn::inCopy(const inc& i) {
+		bool sn::inCrease(const inc& i) {
 
 			sn& o = *this;
 
-			bool Judge = false;
+			bool judge = false;
 
 			size_t n = 0;
 			size_t offset = o.computeOffset(i);
@@ -258,26 +258,26 @@ namespace lib_inc {
 			if (i.CheckName() == true) {
 
 				if (offset == o.amSon) {
-					Judge = true;
+					judge = true;
 				}
 				else {
-					Judge = (i != o[offset]);
+					judge = (i != o[offset]);
 				}
 
-				if (Judge == false) {
+				if (judge == false) {
 					cout << "Error:inCopy Name Error";
 					throw;
 				}
 
 			}
 
-			if (Judge == true) {
+			if (judge == true) {
 
-				Judge = o.AdjustBackward(offset);
+				judge = o.AdjustBackward(offset);
 
 			}
 
-			if (Judge == true) {
+			if (judge == true) {
 
 				o[offset].Copy(i);
 
@@ -289,23 +289,9 @@ namespace lib_inc {
 
 			}
 
-			return Judge;
+			return judge;
 		}
 
-		bool sn::inHard(const inc& i) {
-
-			return true;
-		}
-
-		bool sn::inSymbolic(const inc& i) {
-
-			return true;
-		}
-
-		bool sn::inMount(const inc& i) {
-
-			return true;
-		}
 
 
 	}

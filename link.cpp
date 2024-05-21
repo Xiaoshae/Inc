@@ -7,12 +7,14 @@ namespace lib_inc {
 	namespace n_link {
 
 		link::link(inc& i) :
-			linktype(types::Hard),
-			Target(nullptr),
-			hn_link(1),
+			ts(types::None),
+			tg(nullptr),
+			hn(1),
 			data(i.data),
 			son(i.son.son),
 			amSon(i.son.amSon),
+			sonback(nullptr),
+			amSonback(0),
 			notice(nullptr),
 			amNotice(0)
 		{
@@ -118,9 +120,9 @@ namespace lib_inc {
 
 			link& o = *this;
 
-			bool Judge = o.expand();
+			bool judge = o.expand();
 
-			if (Judge != true) {
+			if (judge != true) {
 				cout << "Error: class link | append to expand Error!" << endl;
 				throw;
 			}
@@ -162,16 +164,16 @@ namespace lib_inc {
 
 			link& o = *this;
 
-			o.linktype = l.linktype;
+			o.ts = l.ts;
 
-			if (o.linktype == types::Symbolic) {
-				o.SymbolicTarget = l.SymbolicTarget;
+			if (o.ts == types::Symbolic) {
+				o.stg = l.stg;
 			}
 			else {
-				o.Target = l.Target;
+				o.tg = l.tg;
 			}
 
-			o.hn_link = 1;
+			o.hn = 1;
 			o.notice = nullptr;
 			o.amNotice = 0;
 

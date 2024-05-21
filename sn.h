@@ -62,15 +62,10 @@ namespace lib_inc {
 
 		public:
 
-			bool Increase(void);
 
-			bool inCopy(const inc& i);
 
-			bool inHard(const inc& i);
+			bool inCrease(const inc& i);
 
-			bool inSymbolic(const inc& i);
-
-			bool inMount(const inc& i);
 
 			bool Copy(const sn& s);
 

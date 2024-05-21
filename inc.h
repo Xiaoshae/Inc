@@ -67,31 +67,40 @@ namespace lib_inc {
 
 	public:
 
-		// 支持 Copy
-		bool Increase(const string& name, const gen& data = nullptr);
+		// 支持 None Hard
+		// 默认 None
+		bool inCrease(const string& name, const gen& data = nullptr);
 
-		// 支持 Copy Hard Mount
-		// 默认 Copy
-		bool Increase(const inc& i, const types& linktype);
+		// 支持 None Hard inFolder Mount isSymbolic(const inc & i) inHardLink
+		// 默认 Hard
+		bool inCrease(const inc& i, const types& cs);
 
 		// 支持 Symbolic
-		bool Increase(const string& path, const types& linktype);
+		bool inCrease(const string& name, const string& path);
 
-		// inCopy
-		bool inCopy(const inc& i);
+
+		bool inNone(const string& name);
+
+		bool inNone(const inc& i);
+
+		bool inHard(const string& name, const gen& data);
 
 		// inHard
 		bool inHard(const inc& i);
 
-		// inSymbolic
+		// inFolder
+		bool inFolder(const inc& i);
+
+		bool inSymbolic(const string& name, const string& path);
+
 		bool inSymbolic(const inc& i);
+
+		bool inHardLink(const inc& i);
 
 		// inMount
 		bool inMount(const inc& i);
 
 		bool Copy(const inc& i);
-
-		bool Mount(const inc& i);
 
 		bool reduce(const string& name);
 
