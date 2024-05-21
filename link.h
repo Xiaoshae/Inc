@@ -37,7 +37,7 @@ namespace lib_inc {
 		using gen = n_space::space<void*>;
 		using am = n_space::space<size_t>;
 
-		using inp = inc*;
+		using incptr = inc*;
 		using linkGroup = inc**;
 
 		class link {

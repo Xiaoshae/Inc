@@ -92,16 +92,25 @@ namespace lib_inc {
 
 	bool inc::inNone(const string& name) {
 
+		bool judge = false;
+
+		return judge;
 
 	}
 
 	bool inc::inNone(const inc& i) {
 
+		bool judge = false;
+
+		return judge;
 	}
 
 	bool inc::inHard(const string& name, const gen& data) {
 
 
+		bool judge = false;
+
+		return judge;
 	}
 
 	bool inc::inHard(const inc& i) {
@@ -118,26 +127,37 @@ namespace lib_inc {
 
 	bool inc::inFolder(const inc& i) {
 
-		return true;
+		bool judge = false;
+
+		return judge;
 	}
 
 	bool inc::inMount(const inc& i) {
 
-		return true;
+		bool judge = false;
+
+		return judge;
 	}
 
 	bool inc::inSymbolic(const string& name, const string& path) {
 
+		bool judge = false;
+
+		return judge;
 	}
 
 	bool inc::inSymbolic(const inc& i) {
 
-		return true;
+		bool judge = false;
+
+		return judge;
 	}
 
 	bool inc::inHardLink(const inc& i) {
 
-		return true;
+		bool judge = false;
+
+		return judge;
 	}
 
 	bool inc::Copy(const inc& i) {
