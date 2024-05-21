@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-
 #ifndef __LINK__
 
 #define __LINK__
@@ -21,13 +20,16 @@ namespace lib_inc {
 			Copy = 0,
 			Hard = 1,
 			Symbolic = 2,
-			Mount = 3
+			Mount = 3,
+			Folder = 4
 		};
 
 		enum class ctypes {
 			// 被挂载点删除
 			Delete = 0,
-			UpperLayer = 1
+			UpperLayer = 1,
+			JoinLink = 2,
+			UnLink = 3
 		};
 
 		using sinc = n_space::space<inc**>;
@@ -51,8 +53,15 @@ namespace lib_inc {
 				incptr Target;	
 			};
 
-			
+		
+			// 硬链接 数量
 			am hn_link;
+
+			// 当一个普通类型从成为挂载类型，则将普通类型中原有的son保存下来
+			// 当取消挂载的时候，在设置回去
+
+			// son的备份
+			linkGroup backSon;
 
 			gen& data;
 			sinc& son;
@@ -81,8 +90,9 @@ namespace lib_inc {
 			//传递
 			bool transfer(ctypes cs);
 
-			//反馈
-			bool feedback(ctypes cs);
+			bool joinLink(inc& i);
+
+			bool unLink(inc& i);
 
 
 		public:
@@ -93,6 +103,9 @@ namespace lib_inc {
 			bool reduce(incptr i);
 
 			void Copy(const link& l);
+
+			inc& operator[](const size_t& n);
+			const inc& operator[](const size_t& n) const;
 
 		};
 	}

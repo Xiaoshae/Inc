@@ -6,7 +6,7 @@ namespace lib_inc {
 
 	namespace n_link {
 
-		link::link(inc & i):
+		link::link(inc& i) :
 			linktype(types::Hard),
 			Target(nullptr),
 			hn_link(1),
@@ -14,10 +14,9 @@ namespace lib_inc {
 			son(i.son.son),
 			amSon(i.son.amSon),
 			notice(nullptr),
-			amNotice(0){
-
-			return;
-
+			amNotice(0)
+		{
+			;
 		}
 
 		link::~link(void) {
@@ -29,10 +28,11 @@ namespace lib_inc {
 
 			link& o = *this;
 
-			linkGroup newNotice = reinterpret_cast<linkGroup>(realloc(notice, (amNotice + 1) * 8));
+			linkGroup newNotice = reinterpret_cast<linkGroup>(realloc(notice, (amNotice + 1) * sizeof(void*)));
 
 			if (newNotice == nullptr) {
-				;
+				cout << "Error: class link | expand Memory Error!" << endl;
+				throw;
 			}
 
 			o.notice = newNotice;
@@ -47,38 +47,72 @@ namespace lib_inc {
 			link& o = *this;
 
 			o.amNotice--;
-			o.notice = reinterpret_cast<linkGroup>(realloc(notice, o.amNotice * 8));
+			o.notice = reinterpret_cast<linkGroup>(realloc(notice, o.amNotice * sizeof(void*)));
 
 			return;
 		}
 
 		// 上级发生变化，上级调用下级该函数进行通告
-		bool link::takeOver(void) {
+		bool link::takeOver(ctypes cs) {
 			link& o = *this;
 
-			o.transfer();
+			switch (cs)
+			{
+			case ctypes::Delete: {
+				break;
+			}
+			case ctypes::UpperLayer: {
+				// o.son = o.Target->son.son;
+				o.transfer(cs);
+				break;
+			}
+			case ctypes::JoinLink: {
+				break;
+			}
+			case ctypes::UnLink: {
+				break;
+			}
+			}
+
+			o.transfer(cs);
 
 			return true;
 
 		}
 
 		// 接收当上级的变化通告，将通告继续传递到下级
-		bool link::transfer(void) {
+		bool link::transfer(ctypes cs) {
 
 			link& o = *this;
 
 			for (int i = 0; i < o.amNotice; i++) {
-				(*(o.notice[i])).links.takeOver();
+				o[i].links.takeOver(cs);
+				// (*(o.notice[i])).links.takeOver(cs);
 			}
 
-			return false;
+			return true;
 		}
 
-		// 下游发生变化，需要反馈到上游去
-		bool link::feedback(void) {
+		
 
-			return false;
+		// 取消链接
+		bool link::joinLink(inc& i) {
+
+			link& o = *this;
+
+			return o.append(&i);
+
 		}
+
+		// 取消链接
+		bool link::unLink(inc& i) {
+
+			link& o = *this;
+
+			return o.reduce(&i);
+
+		}
+
 
 		bool link::append(incptr i) {
 
@@ -87,7 +121,8 @@ namespace lib_inc {
 			bool Judge = o.expand();
 
 			if (Judge != true) {
-
+				cout << "Error: class link | append to expand Error!" << endl;
+				throw;
 			}
 
 			o.notice[amNotice - 1] = i;
@@ -144,7 +179,34 @@ namespace lib_inc {
 		}
 
 
-		
+		inc& link::operator[](const size_t& n) {
+
+			link& o = *this;
+
+			if (!(n >= 0 && n <= o.amNotice)) {
+				cout << "Error:out of index" << endl;
+				throw;
+			}
+
+			return (*(o.notice[n]));
+		}
+
+		const inc& link::operator[](const size_t& n) const {
+
+			const link& o = *this;
+
+			if (!(n >= 0 && n <= o.amNotice)) {
+				cout << "Error:out of index" << endl;
+				throw;
+			}
+
+			return (*(o.notice[n]));
+		}
+
+
+
+
+
 	}
 
 }
