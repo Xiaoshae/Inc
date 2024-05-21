@@ -10,9 +10,7 @@ namespace lib_inc {
 			ts(types::None),
 			tg(nullptr),
 			hn(1),
-			data(i.data),
-			son(i.son.son),
-			amSon(i.son.amSon),
+			i(i),
 			sonback(nullptr),
 			amSonback(0),
 			notice(nullptr),
@@ -160,6 +158,8 @@ namespace lib_inc {
 			return true;
 		}
 
+		
+
 		void link::Copy(const link& l) {
 
 			link& o = *this;
@@ -178,6 +178,83 @@ namespace lib_inc {
 			o.amNotice = 0;
 
 			return;
+		}
+
+		void link::toNone(const link& l) {
+
+			link& o = *this;
+
+			switch (o.ts)
+			{
+			case types::None: { 
+				// None to None 无需任何操作
+				break;
+			}
+			case types::Hard: { 
+				// Hard to None 需要删除data 
+
+				// fun() 这里需要调用一个删除删掉data 或者保证data不存在的函数
+
+				o.ts == types::None;
+
+				break;
+			}
+			case types::Folder: { 
+				// Folder to None 需要删除 son 和 data(有的话)
+
+				// fun() 这里需要保证 son 和 data 不存在
+
+				o.ts = types::None;
+
+				break;
+			}
+			case types::Mount: {
+				// Mount to None
+				// 1. 取消挂载
+				// 2. 用户取消挂载后，如果不存在son和data会自动变为None
+				// 3. 也可以手动调用该方法变为None，该方法会 取消挂载 并删除 son 和 data
+				break;
+			}
+			case types::Symbolic: { 
+				// Symbolic to None 取消链接
+				// 1. 用户取消链接后，会自动变为None
+				// 2. 也可以手动调用该方法变为None，该方法会 取消链接
+				break;
+			}
+			}
+
+		}
+
+		void link::toHard(const link & l) {
+
+			link& o = *this;
+
+			switch (o.ts)
+			{
+			case types::None: { 
+				// None to Hard 无需任何操作
+				// 1. 当发生变化是会自动进行操作
+				break;
+			}
+			case types::Hard: { 
+				// Hard to Hard 无需任何操作
+				break;
+			}
+			case types::Folder: { // Folder to None 需要删除 son 和 data(有的话)
+				break;
+			}
+			case types::Mount: {
+				// Mount to None
+				// 1. 取消挂载
+				// 2. 删除 son 有的话
+				// 3. 删除 data 有的话
+				break;
+			}
+			case types::Symbolic: { // Symbolic to None 取消链接
+				break;
+			}
+			}
+
 		}
 
 
@@ -203,6 +280,22 @@ namespace lib_inc {
 			}
 
 			return (*(o.notice[n]));
+		}
+
+		void link::autoSet(void) {
+
+			link& o = *this;
+
+			if (nullptr == i.data && 0 == o.i.son.amSon) {
+				o.ts = types::None;
+			}
+			else if(nullptr != i.data && 0 == o.i.son.amSon) {
+				o.ts = types::Hard;
+			}
+			else if (0 != o.i.son.amSon) {
+				o.ts = types::Folder;
+			}
+
 		}
 
 

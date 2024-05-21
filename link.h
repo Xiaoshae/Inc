@@ -61,15 +61,15 @@ namespace lib_inc {
 			// 当一个普通类型从成为挂载类型，则将普通类型中原有的son保存下来
 			// 当取消挂载的时候，在设置回去
 
+
+
 			// son的备份
 			sinc sonback;
 
 			// amSon的备份
 			am 	amSonback;
 
-			gen& data;
-			sinc& son;
-			am& amSon;
+			inc& i;
 
 			// 链接到当前inc的节点组
 			linkGroup notice;
@@ -101,12 +101,29 @@ namespace lib_inc {
 
 		public:
 
+			void autoSet(void);
 
 			bool append(incptr i);
 
 			bool reduce(incptr i);
 
 			void Copy(const link& l);
+
+			// new None
+			void toNone(const link& l);
+
+			//  new Hard
+			void toHard(const link& l);
+
+			// new Folder
+			void toFolder(const link& l);
+
+			// new Mount
+			void toMount(const link& l);
+
+			// new Symbolic
+			void toSymbolic(const link& l);
+			
 
 			inc& operator[](const size_t& n);
 			const inc& operator[](const size_t& n) const;

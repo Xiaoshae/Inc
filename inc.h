@@ -116,6 +116,8 @@ namespace lib_inc {
 
 		bool unLink(const inc& i);
 
+		
+
 		operator void* (void) const ;
 
 		inc& operator[](const size_t & n);
